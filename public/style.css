@@ -76,7 +76,7 @@ body {
     width: 50%;
     margin-right: 64.8rem;
     height:50rem;
-    margin-top: 2rem;
+    margin-top: 11rem;
     margin-bottom: 2rem
 }
 
@@ -91,4 +91,11 @@ body {
   
   .thumbnailimg:hover {
     box-shadow: 0 0 2px 1px rgba(56, 95, 56, 0.445);
+  }
+
+  .thumbnailimgmain{
+      width: 50rem;
+      margin-left: 20rem;
+     position: absolute;
+     bottom:50px
   }

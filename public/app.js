@@ -2543,68 +2543,10 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Thumbnail = function (_React$Component) {
-    _inherits(Thumbnail, _React$Component);
-
-    function Thumbnail(props) {
-        _classCallCheck(this, Thumbnail);
-
-        return _possibleConstructorReturn(this, (Thumbnail.__proto__ || Object.getPrototypeOf(Thumbnail)).call(this, props));
-    }
-
-    _createClass(Thumbnail, [{
-        key: 'render',
-        value: function render() {
-
-            return _react2.default.createElement(
-                'div',
-                { className: 'container' },
-                _react2.default.createElement('img', { className: 'thumbnailimgmain', src: 'https://img-19.ccm2.net/8vUCl8TXZfwTt7zAOkBkuDRHiT8=/1240x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg' }),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'a',
-                        { target: '_blank', href: 'img_forest.jpg' },
-                        _react2.default.createElement('img', { className: 'thumbnailimg', src: 'https://img-19.ccm2.net/8vUCl8TXZfwTt7zAOkBkuDRHiT8=/1240x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg', alt: 'Forest' })
-                    ),
-                    _react2.default.createElement(
-                        'a',
-                        { target: '_blank', href: 'img_forest.jpg' },
-                        _react2.default.createElement('img', { className: 'thumbnailimg', src: 'https://img-19.ccm2.net/8vUCl8TXZfwTt7zAOkBkuDRHiT8=/1240x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg', alt: 'Forest' })
-                    )
-                )
-            );
-        }
-    }]);
-
-    return Thumbnail;
-}(_react2.default.Component);
-
-exports.default = Thumbnail;
+throw new Error("Module build failed: SyntaxError: C:/Users/asus/OneDrive/Desktop/Catwalk-overview/overview-service/client/components/Thumbnail.jsx: Unexpected token, expected } (19:28)\n\n\u001b[0m \u001b[90m 17 | \u001b[39m                \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 18 | \u001b[39m                    {images\u001b[33m.\u001b[39mmap()\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 19 | \u001b[39m                        \u001b[33m<\u001b[39m a target\u001b[33m=\u001b[39m\u001b[32m\"_blank\"\u001b[39m href\u001b[33m=\u001b[39m\u001b[32m\"img_forest.jpg\"\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m    | \u001b[39m                            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 20 | \u001b[39m                        \u001b[33m<\u001b[39m\u001b[33mimg\u001b[39m className\u001b[33m=\u001b[39m\u001b[32m\"thumbnailimg\"\u001b[39m src\u001b[33m=\u001b[39m\u001b[32m\"https://img-19.ccm2.net/8vUCl8TXZfwTt7zAOkBkuDRHiT8=/1240x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg\"\u001b[39m alt\u001b[33m=\u001b[39m\u001b[32m\"Forest\"\u001b[39m \u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 21 | \u001b[39m                    \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33ma\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 22 | \u001b[39m                \u001b[33m<\u001b[39m\u001b[33mimg\u001b[39m className\u001b[33m=\u001b[39m\u001b[32m\"thumbnailimgmain\"\u001b[39m src\u001b[33m=\u001b[39m\u001b[32m\"https://img-19.ccm2.net/8vUCl8TXZfwTt7zAOkBkuDRHiT8=/1240x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg\"\u001b[39m \u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n");
 
 /***/ }),
 /* 10 */
