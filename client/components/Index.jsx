@@ -4,6 +4,7 @@ import Navbar from './Navbar.jsx'
 
 
 
+
 export default class App extends React.Component {
   constructor() {
     super();
@@ -26,6 +27,7 @@ export default class App extends React.Component {
         <div>
           <Thumbnail />
         </div>
+
 
       </div>
     );
