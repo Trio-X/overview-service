@@ -70,16 +70,17 @@ body {
 
   /* Thumbnail style */
 
-.container{
-    border: 1px solid rgba(56, 95, 56, 0.445);
-    background: linear-gradient(70deg, #e6e6e6, #f7f7f7);
-    width: 50%;
-    margin-right: 64.8rem;
-    height:50rem;
-    margin-top: 11rem;
-    margin-bottom: 2rem
-}
-
+   .container{
+      border: 1px solid rgba(56, 95, 56, 0.445);
+      background: linear-gradient(70deg, #e6e6e6, #f7f7f7);
+      margin-bottom: 50px;
+      margin-right: 510px;
+      margin-top: 90px;
+     width:900px;
+      padding-top:50px
+      
+  }
+/*
   .thumbnailimg {
     border: 1px solid rgba(56, 95, 56, 0.445);
     border-radius: 4px;
@@ -98,4 +99,42 @@ body {
       margin-left: 20rem;
      position: absolute;
      bottom:50px
-  }
+  } */
+
+  .hide-bullets {
+    list-style:none;
+    margin-left: -40px;
+    margin-top:20px;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    width: 100%;
+    height:500px;
+    
+    
+}
+#slider-thumbs {
+    height: 565px;
+    width:200px;
+    overflow-y: scroll;
+    white-space: nowrap;
+    cursor: pointer;
+    
+}
+
+                                            
+.row{
+  height:40em;
+}
+
+/* zoom styling */
+.carousel-inner:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(1.5); 
+  
+}

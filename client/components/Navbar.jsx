@@ -33,7 +33,7 @@ export default class Navbar extends React.Component {
 
 
                 <div className="alert">
-                    <span className="closebtn" onClick="this.parentElement.style.display = 'none';">&times;</span>
+                    <span className="closebtn" >&times;</span>
                     <strong>Announcement !</strong> Sale/Discount <strong> offer.</strong>
                 </div>
 

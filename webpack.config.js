@@ -1,7 +1,4 @@
 const webpack = require("webpack");
-const path = require("path");
-import "react-image-gallery/styles/css/image-gallery.css";
-import "react-image-gallery/styles/scss/image-gallery.scss";
 
 module.exports = {
   context: __dirname + "/client",
@@ -17,13 +14,8 @@ module.exports = {
         },
       },
       {
-        // I 've added a new rule and I included the style path from node_modules
-        include: path.resolve(
-          __dirname,
-          "./node_modules/react-image-gallery/styles/scss/image-gallery.scss"
-        ),
-        test: /\.(s[ac]ss|css)$/i,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        test: /\.css$/,
+        loader: "style-loader!css-loader",
       },
     ],
   },

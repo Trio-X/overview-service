@@ -1,7 +1,8 @@
 import React from 'react';
 import Thumbnail from './Thumbnail.jsx'
 import Navbar from './Navbar.jsx'
-import MyGallery from './Carousel.jsx'
+
+
 
 export default class App extends React.Component {
   constructor() {
@@ -9,6 +10,13 @@ export default class App extends React.Component {
 
     this.state = {};
   }
+
+  // componentDidMount() {
+  //   axios.get('/api/overview')
+  //     .then(() => {
+
+  //     })
+  // }
 
 
   render() {
@@ -18,7 +26,7 @@ export default class App extends React.Component {
         <div>
           <Thumbnail />
         </div>
-        <div> <MyGallery /></div>
+
       </div>
     );
   }
