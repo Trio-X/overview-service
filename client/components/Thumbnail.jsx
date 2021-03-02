@@ -7,27 +7,26 @@ export default class Thumbnail extends React.Component {
         super(props);
         this.state = {
             images: [],
-            rendering: false
+            show: false
         }
     }
 
 
-    componentDidMount() {
-        axios.get("/api/products")
-            .then((response) => {
 
+    componentDidMount() {
+        axios.get('/api/products')
+            .then(response => {
+                // console.log(response.data)
                 this.setState({
                     images: response.data,
-                    rendering: true
+                    show: true
                 })
-
+                // console.log(this.state.pokemons)
             })
-            .catch((error) => {
+            .catch(error => {
                 console.log(error)
             })
-        console.log(response.data);
     }
-
 
 
     render() {
@@ -61,7 +60,7 @@ export default class Thumbnail extends React.Component {
 
         return (
             <div className="container">
-                {this.state.rendering ? (
+                {this.state.show ? (
                     <div id="main_area">
                         <div className="row">
                             <div className="col-sm-3" id="slider-thumbs">

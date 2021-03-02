@@ -113,7 +113,7 @@ body {
   height:500px;
 }
 #slider-thumbs {
-  height: 565px;
+  max-height: 495px;
   width:200px;
   overflow-y: scroll;
   white-space: nowrap;
