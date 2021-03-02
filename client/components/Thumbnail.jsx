@@ -21,12 +21,15 @@ export default class Thumbnail extends React.Component {
                     images: response.data,
                     show: true
                 })
-                // console.log(this.state.pokemons)
+
             })
             .catch(error => {
                 console.log(error)
             })
     }
+
+
+
 
 
     render() {

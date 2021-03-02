@@ -9,6 +9,7 @@ const axios = require("axios");
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "../public")));
 
+//getting overview products
 app.get("/api/products", async (req, res) => {
   try {
     // var data = [];
@@ -22,8 +23,69 @@ app.get("/api/products", async (req, res) => {
       }
     );
 
-    console.log(data.data.results[0].photos);
+    console.log(data.data);
     res.send(data.data.results[0].photos);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+//get product catsegory
+app.get("/api/category", async (req, res) => {
+  try {
+    const data = await axios.get(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003`,
+      {
+        headers: {
+          Authorization: process.env.TOKEN,
+        },
+      }
+    );
+
+    console.log(data.data);
+    res.send(data.data.category);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+//get product name
+
+app.get("/api/name", async (req, res) => {
+  try {
+    // var data = [];
+    const token = process.env.TOKEN;
+    const data = await axios.get(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003`,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+
+    console.log(data.data);
+    res.send(data.data.name);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/api/price", async (req, res) => {
+  try {
+    // var data = [];
+    const token = process.env.TOKEN;
+    const data = await axios.get(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles`,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+
+    console.log(data.data.results[0]);
+    res.send(data.data.results[0].original_price);
   } catch (err) {
     console.log(err);
   }
