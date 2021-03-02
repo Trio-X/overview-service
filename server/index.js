@@ -71,6 +71,8 @@ app.get("/api/name", async (req, res) => {
   }
 });
 
+//get product price:
+
 app.get("/api/price", async (req, res) => {
   try {
     // var data = [];
@@ -86,6 +88,47 @@ app.get("/api/price", async (req, res) => {
 
     console.log(data.data.results[0]);
     res.send(data.data.results[0].original_price);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+//get product rating:
+app.get("/api/rating", async (req, res) => {
+  try {
+    // var data = [];
+    const token = process.env.TOKEN;
+    const data = await axios.get(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews?product_id=11003`,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+
+    console.log(data.data);
+    res.json(data.data.results[0].rating);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/api/quantity", async (req, res) => {
+  try {
+    // var data = [];
+    const token = process.env.TOKEN;
+    const data = await axios.get(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews?product_id=11003`,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+
+    console.log(data.data);
+    res.json(data.data.results[0].rating);
   } catch (err) {
     console.log(err);
   }

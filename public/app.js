@@ -4608,7 +4608,7 @@ var Information = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Information.__proto__ || Object.getPrototypeOf(Information)).call(this, props));
 
         _this.state = {
-            rating: 2,
+            rating: 0,
             category: '',
             name: '',
             price: ''
@@ -4616,7 +4616,7 @@ var Information = function (_React$Component) {
         return _this;
     }
 
-    //change rating function:
+    //!change rating function:
 
 
     _createClass(Information, [{
@@ -4626,6 +4626,9 @@ var Information = function (_React$Component) {
                 rating: newRating
             });
         }
+
+        //!getting product information data:
+
     }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
@@ -4652,6 +4655,14 @@ var Information = function (_React$Component) {
                 // console.log(response.data)
                 _this2.setState({
                     price: response.data
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+            _axios2.default.get('/api/rating').then(function (response) {
+                // console.log(response.data)
+                _this2.setState({
+                    rating: response.data
                 });
             }).catch(function (error) {
                 console.log(error);
@@ -4705,7 +4716,7 @@ var Information = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'info' },
+                    { className: 'price' },
                     '$',
                     this.state.price
                 )
@@ -6252,6 +6263,113 @@ var Styles = function (_React$Component) {
                     { className: 'circle' },
                     ' ',
                     _react2.default.createElement('span', { className: 'style' })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'circle' },
+                    ' ',
+                    _react2.default.createElement('span', { className: 'style' })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'circle' },
+                    ' ',
+                    _react2.default.createElement('span', { className: 'style' })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'circle' },
+                    ' ',
+                    _react2.default.createElement('span', { className: 'style' })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'circle' },
+                    ' ',
+                    _react2.default.createElement('span', { className: 'style' })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'circle' },
+                    ' ',
+                    _react2.default.createElement('span', { className: 'style' })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'circle' },
+                    ' ',
+                    _react2.default.createElement('span', { className: 'style' })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'circle' },
+                    ' ',
+                    _react2.default.createElement('span', { className: 'style' })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'circle' },
+                    ' ',
+                    _react2.default.createElement('span', { className: 'style' })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'circle' },
+                    ' ',
+                    _react2.default.createElement('span', { className: 'style' })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        'select',
+                        { className: 'selectsize', name: 'cars', id: 'cars' },
+                        _react2.default.createElement(
+                            'option',
+                            { value: 'volvo' },
+                            'Select size'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: 'saab' },
+                            'Saab'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: 'opel' },
+                            'Opel'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: 'audi' },
+                            'Audi'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'select',
+                        { className: 'quantity', name: 'cars', id: 'cars' },
+                        _react2.default.createElement(
+                            'option',
+                            { value: '1' },
+                            'Select size'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: '2' },
+                            'Saab'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: '3' },
+                            'Opel'
+                        ),
+                        _react2.default.createElement(
+                            'option',
+                            { value: '4' },
+                            'Audi'
+                        )
+                    ),
+                    _react2.default.createElement('input', { className: 'addtocart', type: 'submit', value: 'Add to cart    +' })
                 )
             );
         }

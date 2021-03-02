@@ -7,7 +7,7 @@ export default class Information extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            rating: 2,
+            rating: 0,
             category: '',
             name: '',
             price: ''
@@ -15,12 +15,15 @@ export default class Information extends React.Component {
     }
 
 
-    //change rating function:
+    //!change rating function:
     changeRating(newRating, name) {
         this.setState({
             rating: newRating
         });
     }
+
+
+    //!getting product information data:
 
     componentDidMount() {
         axios.get('/api/category')
@@ -57,6 +60,17 @@ export default class Information extends React.Component {
             .catch(error => {
                 console.log(error)
             })
+        axios.get('/api/rating')
+            .then(response => {
+                // console.log(response.data)
+                this.setState({
+                    rating: response.data
+                })
+
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
 
@@ -83,7 +97,7 @@ export default class Information extends React.Component {
                 <div className="info">Category<br></br><strong>{this.state.category}</strong></div>
 
                 <div className="info"><strong>{this.state.name}</strong></div>
-                <div className="info">${this.state.price}</div>
+                <div className="price">${this.state.price}</div>
             </div>
         );
     }
