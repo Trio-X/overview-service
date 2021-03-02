@@ -2,6 +2,7 @@ import React from 'react';
 import Thumbnail from './Thumbnail.jsx'
 import Navbar from './Navbar.jsx'
 import Information from './Information.jsx'
+import Styles from './Styles.jsx'
 
 
 
@@ -30,7 +31,7 @@ export default class App extends React.Component {
         </div>
         <div className="inline2">
           <Information />
-
+          <Styles />
         </div>
 
 

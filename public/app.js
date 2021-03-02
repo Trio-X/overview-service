@@ -1311,6 +1311,10 @@ var _Information = __webpack_require__(38);
 
 var _Information2 = _interopRequireDefault(_Information);
 
+var _Styles = __webpack_require__(52);
+
+var _Styles2 = _interopRequireDefault(_Styles);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1358,7 +1362,8 @@ var App = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'inline2' },
-          _react2.default.createElement(_Information2.default, null)
+          _react2.default.createElement(_Information2.default, null),
+          _react2.default.createElement(_Styles2.default, null)
         )
       );
     }
@@ -4611,6 +4616,9 @@ var Information = function (_React$Component) {
         return _this;
     }
 
+    //change rating function:
+
+
     _createClass(Information, [{
         key: 'changeRating',
         value: function changeRating(newRating, name) {
@@ -4656,18 +4664,24 @@ var Information = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'starsrating' },
-                _react2.default.createElement(_reactStarRatings2.default, {
-                    className: 'stars',
-                    rating: this.state.rating,
-                    starRatedColor: 'black',
-                    changeRating: this.changeRating,
-                    numberOfStars: 5,
-                    name: 'rating'
-                }),
                 _react2.default.createElement(
-                    'a',
-                    { className: 'readreview' },
-                    'Read all reviews'
+                    'div',
+                    { className: 'stars' },
+                    _react2.default.createElement(_reactStarRatings2.default, {
+                        className: 'stars',
+                        rating: this.state.rating
+                        // starRatedColor="black"
+                        // changeRating={this.changeRating}
+                        , numberOfStars: 5,
+                        name: 'rating',
+                        starDimension: '40px',
+                        starSpacing: '5px'
+                    }),
+                    _react2.default.createElement(
+                        'a',
+                        { className: 'readreview' },
+                        'Read all reviews'
+                    )
                 ),
                 _react2.default.createElement(
                     'div',
@@ -6174,6 +6188,79 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 	}
 }());
 
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _axios = __webpack_require__(19);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Styles = function (_React$Component) {
+    _inherits(Styles, _React$Component);
+
+    function Styles(props) {
+        _classCallCheck(this, Styles);
+
+        var _this = _possibleConstructorReturn(this, (Styles.__proto__ || Object.getPrototypeOf(Styles)).call(this, props));
+
+        _this.state = {};
+        return _this;
+    }
+
+    _createClass(Styles, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'div',
+                    { className: 'styles' },
+                    ' ',
+                    _react2.default.createElement(
+                        'strong',
+                        null,
+                        'styles'
+                    ),
+                    ' - selected style '
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'circle' },
+                    ' ',
+                    _react2.default.createElement('span', { className: 'style' })
+                )
+            );
+        }
+    }]);
+
+    return Styles;
+}(_react2.default.Component);
+
+exports.default = Styles;
 
 /***/ })
 /******/ ]);

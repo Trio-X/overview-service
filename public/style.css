@@ -154,8 +154,8 @@ width:50%;
   display: inline-block;  
   width:50%;
   margin-bottom:2000px;
-  border: 1px solid rgba(56, 95, 56, 0.445);
-  background: linear-gradient(70deg, #e6e6e6, #f7f7f7);
+  /* border: 1px solid rgba(56, 95, 56, 0.445); */
+  background: white;
   width:30%;
   position: absolute;
    margin-top:88px;
@@ -180,6 +180,28 @@ width:50%;
 
 .info{
   text-align: center;
-  margin-top:50px;
+  margin-top:10px;
   font-size:30px;
+}
+
+.stars{
+  text-align: center;
+  margin-top:10px
+}
+.readreview{
+margin-left: 20px;
+}
+
+.styles{
+  margin-top:10px;
+  margin-left: 10px;
+  font-size:20px
+}
+
+.style{
+  height: 95px;
+  width: 95px;
+  border:1px solid;
+  border-radius: 50%;
+  display: inline-block;
 }

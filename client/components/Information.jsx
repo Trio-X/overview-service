@@ -15,6 +15,7 @@ export default class Information extends React.Component {
     }
 
 
+    //change rating function:
     changeRating(newRating, name) {
         this.setState({
             rating: newRating
@@ -66,16 +67,19 @@ export default class Information extends React.Component {
         // rating = 2;
         return (
             <div className="starsrating">
-                <StarRatings
-                    className="stars"
-                    rating={this.state.rating}
-                    starRatedColor="black"
-                    changeRating={this.changeRating}
-                    numberOfStars={5}
-                    name='rating'
-                />
-                <a className="readreview">Read all reviews</a>
-
+                <div className="stars">
+                    <StarRatings
+                        className="stars"
+                        rating={this.state.rating}
+                        // starRatedColor="black"
+                        // changeRating={this.changeRating}
+                        numberOfStars={5}
+                        name='rating'
+                        starDimension="40px"
+                        starSpacing="5px"
+                    />
+                    <a className="readreview">Read all reviews</a>
+                </div>
                 <div className="info">Category<br></br><strong>{this.state.category}</strong></div>
 
                 <div className="info"><strong>{this.state.name}</strong></div>
