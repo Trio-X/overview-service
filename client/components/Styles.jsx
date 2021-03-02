@@ -5,32 +5,48 @@ export default class Styles extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            style: [],
+            onestyle: []
+
 
         }
     }
 
+    componentDidMount() {
+        axios.get('/api/styles')
+            .then(response => {
+                // console.log(response.data)
+                this.setState({
+                    style: response.data
+                })
+
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
+
+
+
+
+
     render() {
+        console.log(this.state.style)
         return (
             <div>
-                <div className="styles"> <strong>styles</strong> - selected style </div>
-                <div className="circle"> <span className="style"></span></div>
-                <div className="circle"> <span className="style"></span></div>
-                <div className="circle"> <span className="style"></span></div>
-                <div className="circle"> <span className="style"></span></div>
-                <div className="circle"> <span className="style"></span></div>
-                <div className="circle"> <span className="style"></span></div>
-                <div className="circle"> <span className="style"></span></div>
-                <div className="circle"> <span className="style"></span></div>
-                <div className="circle"> <span className="style"></span></div>
-                <div className="circle"> <span className="style"></span></div>
 
+                <div className="styles"> <strong>styles</strong> - selected style </div>
+                {this.state.style.map((styleid, index) => (
+                    <div key={index} id={styleid.style_id} className="circle"> <span onClick={() => this.props.styleimages(styleid.photos)} style={{ background: `${styleid.name}` }} className="style"></span></div>
+                ))}
                 <div>
 
                     <select className="selectsize" name="cars" id="cars">
-                        <option value="volvo">Select size</option>
-                        <option value="saab">Saab</option>
-                        <option value="opel">Opel</option>
-                        <option value="audi">Audi</option>
+                        <option value="volvo">Select quantity</option>
+                        {this.state.style.map((styleid, index) => (
+                            <option value="saab">{styleid.style_id}</option>
+                        ))}
                     </select>
 
                     <select className="quantity" name="cars" id="cars">

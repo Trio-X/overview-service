@@ -1502,26 +1502,30 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var App = function (_React$Component) {
   _inherits(App, _React$Component);
 
-  function App() {
+  function App(props) {
     _classCallCheck(this, App);
 
-    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-    _this.state = {};
+    _this.state = {
+      newimages: []
+    };
     return _this;
   }
 
-  // componentDidMount() {
-  //   axios.get('/api/overview')
-  //     .then(() => {
-
-  //     })
-  // }
-
-
   _createClass(App, [{
+    key: 'changestyle',
+    value: function changestyle(newphotos) {
+      this.setState({
+        newimages: newphotos
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
+      console.log(this.state.newimages);
       return _react2.default.createElement(
         'div',
         null,
@@ -1533,13 +1537,17 @@ var App = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'inline1' },
-          _react2.default.createElement(_Thumbnail2.default, null)
+          _react2.default.createElement(_Thumbnail2.default, { styleimages: function styleimages() {
+              return _this2.changestyle(_this2.state.newimages);
+            }, images: this.state.newimages })
         ),
         _react2.default.createElement(
           'div',
           { className: 'inline2' },
           _react2.default.createElement(_Information2.default, null),
-          _react2.default.createElement(_Styles2.default, null)
+          _react2.default.createElement(_Styles2.default, { styleimages: function styleimages(newphotos) {
+              return _this2.changestyle(newphotos);
+            } })
         )
       );
     }
@@ -3542,6 +3550,7 @@ var Thumbnail = function (_React$Component) {
         _this.state = {
             images: [],
             show: false
+
         };
         return _this;
     }
@@ -3559,6 +3568,13 @@ var Thumbnail = function (_React$Component) {
                 });
             }).catch(function (error) {
                 console.log(error);
+            });
+        }
+    }, {
+        key: 'changestyle',
+        value: function changestyle(newphotos) {
+            this.setState({
+                images: newphotos
             });
         }
     }, {
@@ -3589,7 +3605,7 @@ var Thumbnail = function (_React$Component) {
                 });
             });
 
-            console.log(this.state.images);
+            // console.log(this.state.images)
 
             return _react2.default.createElement(
                 'div',
@@ -6234,13 +6250,34 @@ var Styles = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Styles.__proto__ || Object.getPrototypeOf(Styles)).call(this, props));
 
-        _this.state = {};
+        _this.state = {
+            style: [],
+            onestyle: []
+
+        };
         return _this;
     }
 
     _createClass(Styles, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            _axios2.default.get('/api/styles').then(function (response) {
+                // console.log(response.data)
+                _this2.setState({
+                    style: response.data
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var _this3 = this;
+
+            console.log(this.state.style);
             return _react2.default.createElement(
                 'div',
                 null,
@@ -6255,66 +6292,16 @@ var Styles = function (_React$Component) {
                     ),
                     ' - selected style '
                 ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
+                this.state.style.map(function (styleid, index) {
+                    return _react2.default.createElement(
+                        'div',
+                        { key: index, id: styleid.style_id, className: 'circle' },
+                        ' ',
+                        _react2.default.createElement('span', { onClick: function onClick() {
+                                return _this3.props.styleimages(styleid.photos);
+                            }, style: { background: '' + styleid.name }, className: 'style' })
+                    );
+                }),
                 _react2.default.createElement(
                     'div',
                     null,
@@ -6324,23 +6311,15 @@ var Styles = function (_React$Component) {
                         _react2.default.createElement(
                             'option',
                             { value: 'volvo' },
-                            'Select size'
+                            'Select quantity'
                         ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: 'saab' },
-                            'Saab'
-                        ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: 'opel' },
-                            'Opel'
-                        ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: 'audi' },
-                            'Audi'
-                        )
+                        this.state.style.map(function (styleid, index) {
+                            return _react2.default.createElement(
+                                'option',
+                                { value: 'saab' },
+                                styleid.style_id
+                            );
+                        })
                     ),
                     _react2.default.createElement(
                         'select',

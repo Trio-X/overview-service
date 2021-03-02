@@ -7,7 +7,9 @@ export default class Thumbnail extends React.Component {
         super(props);
         this.state = {
             images: [],
-            show: false
+            show: false,
+
+
         }
     }
 
@@ -28,7 +30,11 @@ export default class Thumbnail extends React.Component {
             })
     }
 
-
+    changestyle(newphotos) {
+        this.setState({
+            images: newphotos
+        })
+    }
 
 
 
@@ -59,10 +65,11 @@ export default class Thumbnail extends React.Component {
             });
         });
 
-        console.log(this.state.images)
+        // console.log(this.state.images)
 
         return (
             <div className="container">
+
                 {this.state.show ? (
                     <div id="main_area">
                         <div className="row">
