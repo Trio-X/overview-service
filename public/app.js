@@ -1483,14 +1483,6 @@ var _Navbar = __webpack_require__(39);
 
 var _Navbar2 = _interopRequireDefault(_Navbar);
 
-var _Information = __webpack_require__(40);
-
-var _Information2 = _interopRequireDefault(_Information);
-
-var _Styles = __webpack_require__(49);
-
-var _Styles2 = _interopRequireDefault(_Styles);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1507,25 +1499,14 @@ var App = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-    _this.state = {
-      newimages: []
-    };
+    _this.state = {};
     return _this;
   }
 
   _createClass(App, [{
-    key: 'changestyle',
-    value: function changestyle(newphotos) {
-      this.setState({
-        newimages: newphotos
-      });
-    }
-  }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
 
-      console.log(this.state.newimages);
       return _react2.default.createElement(
         'div',
         null,
@@ -1536,18 +1517,8 @@ var App = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'inline1' },
-          _react2.default.createElement(_Thumbnail2.default, { styleimages: function styleimages() {
-              return _this2.changestyle(_this2.state.newimages);
-            }, images: this.state.newimages })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'inline2' },
-          _react2.default.createElement(_Information2.default, null),
-          _react2.default.createElement(_Styles2.default, { styleimages: function styleimages(newphotos) {
-              return _this2.changestyle(newphotos);
-            } })
+          { className: 'inline3' },
+          _react2.default.createElement(_Thumbnail2.default, null)
         )
       );
     }
@@ -3531,6 +3502,14 @@ var _axios = __webpack_require__(5);
 
 var _axios2 = _interopRequireDefault(_axios);
 
+var _Information = __webpack_require__(40);
+
+var _Information2 = _interopRequireDefault(_Information);
+
+var _Styles = __webpack_require__(49);
+
+var _Styles2 = _interopRequireDefault(_Styles);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3549,11 +3528,15 @@ var Thumbnail = function (_React$Component) {
 
         _this.state = {
             images: [],
-            show: false
+            show: false,
+            newimages: []
 
         };
         return _this;
     }
+
+    //get product from api:
+
 
     _createClass(Thumbnail, [{
         key: 'componentDidMount',
@@ -3570,6 +3553,9 @@ var Thumbnail = function (_React$Component) {
                 console.log(error);
             });
         }
+
+        //!change style:
+
     }, {
         key: 'changestyle',
         value: function changestyle(newphotos) {
@@ -3580,7 +3566,9 @@ var Thumbnail = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            var _this3 = this;
 
+            // ! image galery manipulation:
             jQuery(document).ready(function ($) {
 
                 $('#myCarousel').carousel({
@@ -3605,93 +3593,107 @@ var Thumbnail = function (_React$Component) {
                 });
             });
 
-            // console.log(this.state.images)
-
             return _react2.default.createElement(
                 'div',
-                { className: 'container' },
-                this.state.show ? _react2.default.createElement(
+                null,
+                _react2.default.createElement(
                     'div',
-                    { id: 'main_area' },
+                    { className: 'inline1' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'row' },
-                        _react2.default.createElement(
+                        { className: 'container' },
+                        this.state.show ? _react2.default.createElement(
                             'div',
-                            { className: 'col-sm-3', id: 'slider-thumbs' },
-                            _react2.default.createElement(
-                                'ul',
-                                { className: 'hide-bullets' },
-                                _react2.default.createElement(
-                                    'li',
-                                    { className: 'col-sm-12' },
-                                    _react2.default.createElement(
-                                        'a',
-                                        { className: 'thumbnail', id: 'carousel-selector-0' },
-                                        _react2.default.createElement('img', { src: this.state.images[0].thumbnail_url })
-                                    )
-                                ),
-                                this.state.images.slice(1).map(function (imge, index) {
-                                    return _react2.default.createElement(
-                                        'li',
-                                        { key: index, className: 'col-sm-12' },
-                                        _react2.default.createElement(
-                                            'a',
-                                            { className: 'thumbnail', id: 'carousel-selector-' + (index + 1) },
-                                            _react2.default.createElement('img', { src: imge.thumbnail_url })
-                                        )
-                                    );
-                                })
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-sm-8' },
+                            { id: 'main_area' },
                             _react2.default.createElement(
                                 'div',
-                                { className: 'col-xs-12', id: 'slider' },
+                                { className: 'row' },
                                 _react2.default.createElement(
                                     'div',
-                                    { className: 'row' },
+                                    { className: 'col-sm-3', id: 'slider-thumbs' },
+                                    _react2.default.createElement(
+                                        'ul',
+                                        { className: 'hide-bullets' },
+                                        _react2.default.createElement(
+                                            'li',
+                                            { className: 'col-sm-12' },
+                                            _react2.default.createElement(
+                                                'a',
+                                                { className: 'thumbnail', id: 'carousel-selector-0' },
+                                                _react2.default.createElement('img', { src: this.state.images[0].thumbnail_url })
+                                            )
+                                        ),
+                                        this.state.images.slice(1).map(function (imge, index) {
+                                            return _react2.default.createElement(
+                                                'li',
+                                                { key: index, className: 'col-sm-12' },
+                                                _react2.default.createElement(
+                                                    'a',
+                                                    { className: 'thumbnail', id: 'carousel-selector-' + (index + 1) },
+                                                    _react2.default.createElement('img', { src: imge.thumbnail_url })
+                                                )
+                                            );
+                                        })
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'col-sm-8' },
                                     _react2.default.createElement(
                                         'div',
-                                        { className: 'col-sm-12', id: 'carousel-bounding-box' },
+                                        { className: 'col-xs-12', id: 'slider' },
                                         _react2.default.createElement(
                                             'div',
-                                            { className: 'carousel slide', id: 'myCarousel' },
+                                            { className: 'row' },
                                             _react2.default.createElement(
                                                 'div',
-                                                { className: 'carousel-inner' },
+                                                { className: 'col-sm-12', id: 'carousel-bounding-box' },
                                                 _react2.default.createElement(
                                                     'div',
-                                                    { className: 'active item', 'data-slide-number': '0' },
-                                                    _react2.default.createElement('img', { src: this.state.images[0].thumbnail_url })
-                                                ),
-                                                this.state.images.slice(1).map(function (imge, index) {
-                                                    return _react2.default.createElement(
+                                                    { className: 'carousel slide', id: 'myCarousel' },
+                                                    _react2.default.createElement(
                                                         'div',
-                                                        { key: index + 1, className: 'item', 'data-slide-number': '' + (index + 1) },
-                                                        _react2.default.createElement('img', { className: 'imgnapil', src: imge.thumbnail_url })
-                                                    );
-                                                })
-                                            ),
-                                            _react2.default.createElement(
-                                                'a',
-                                                { className: 'left carousel-control', href: '#myCarousel', role: 'button', 'data-slide': 'prev' },
-                                                _react2.default.createElement('span', { className: 'glyphicon glyphicon-chevron-left' })
-                                            ),
-                                            _react2.default.createElement(
-                                                'a',
-                                                { className: 'right carousel-control', href: '#myCarousel', role: 'button', 'data-slide': 'next' },
-                                                _react2.default.createElement('span', { className: 'glyphicon glyphicon-chevron-right' })
+                                                        { className: 'carousel-inner' },
+                                                        _react2.default.createElement(
+                                                            'div',
+                                                            { className: 'active item', 'data-slide-number': '0' },
+                                                            _react2.default.createElement('img', { src: this.state.images[0].thumbnail_url })
+                                                        ),
+                                                        this.state.images.slice(1).map(function (imge, index) {
+                                                            return _react2.default.createElement(
+                                                                'div',
+                                                                { key: index + 1, className: 'item', 'data-slide-number': '' + (index + 1) },
+                                                                _react2.default.createElement('img', { className: 'imgnapil', src: imge.thumbnail_url })
+                                                            );
+                                                        })
+                                                    ),
+                                                    _react2.default.createElement(
+                                                        'a',
+                                                        { className: 'left carousel-control', href: '#myCarousel', role: 'button', 'data-slide': 'prev' },
+                                                        _react2.default.createElement('span', { className: 'glyphicon glyphicon-chevron-left' })
+                                                    ),
+                                                    _react2.default.createElement(
+                                                        'a',
+                                                        { className: 'right carousel-control', href: '#myCarousel', role: 'button', 'data-slide': 'next' },
+                                                        _react2.default.createElement('span', { className: 'glyphicon glyphicon-chevron-right' })
+                                                    )
+                                                )
                                             )
                                         )
                                     )
                                 )
                             )
-                        )
+                        ) : null
                     )
-                ) : null
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'inline2' },
+                    _react2.default.createElement(_Information2.default, null),
+                    _react2.default.createElement(_Styles2.default, { styleimages: function styleimages(newphotos) {
+                            return _this3.changestyle(newphotos);
+                        } })
+                )
             );
         }
     }]);
@@ -6332,17 +6334,17 @@ var Styles = function (_React$Component) {
                         _react2.default.createElement(
                             'option',
                             { value: '2' },
-                            'Saab'
+                            'xs'
                         ),
                         _react2.default.createElement(
                             'option',
                             { value: '3' },
-                            'Opel'
+                            'xl'
                         ),
                         _react2.default.createElement(
                             'option',
                             { value: '4' },
-                            'Audi'
+                            'xxl'
                         )
                     ),
                     _react2.default.createElement('input', { className: 'addtocart', type: 'submit', value: 'Add to cart    +' })

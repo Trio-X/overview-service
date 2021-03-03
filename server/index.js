@@ -148,7 +148,10 @@ app.get("/api/q", async (req, res) => {
     );
 
     console.log(data.data);
-    res.json(data.data.results[0].skus);
+    var q = data.data.results.map((elem) => {
+      return elem.skus;
+    });
+    res.json(q);
   } catch (err) {
     console.log(err);
   }

@@ -51,9 +51,9 @@ export default class Styles extends React.Component {
 
                     <select className="quantity" name="cars" id="cars">
                         <option value="1">Select size</option>
-                        <option value="2">Saab</option>
-                        <option value="3">Opel</option>
-                        <option value="4">Audi</option>
+                        <option value="2">xs</option>
+                        <option value="3">xl</option>
+                        <option value="4">xxl</option>
                     </select>
 
                     <input className="addtocart" type="submit" value="Add to cart    +" />
