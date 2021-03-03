@@ -17,7 +17,7 @@ export default class Thumbnail extends React.Component {
     }
 
 
-    //get product from api:
+    //!get product from api:
     componentDidMount() {
         axios.get('/api/products')
             .then(response => {

@@ -1419,11 +1419,11 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(45)(ReactIs.isElement, throwOnDirectAccess);
+  module.exports = __webpack_require__(44)(ReactIs.isElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(46)();
+  module.exports = __webpack_require__(45)();
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
@@ -1436,9 +1436,9 @@ if (process.env.NODE_ENV !== 'production') {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(43);
+  module.exports = __webpack_require__(42);
 } else {
-  module.exports = __webpack_require__(44);
+  module.exports = __webpack_require__(43);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
@@ -1479,7 +1479,7 @@ var _Thumbnail = __webpack_require__(21);
 
 var _Thumbnail2 = _interopRequireDefault(_Thumbnail);
 
-var _Navbar = __webpack_require__(39);
+var _Navbar = __webpack_require__(49);
 
 var _Navbar2 = _interopRequireDefault(_Navbar);
 
@@ -3502,11 +3502,11 @@ var _axios = __webpack_require__(5);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _Information = __webpack_require__(40);
+var _Information = __webpack_require__(39);
 
 var _Information2 = _interopRequireDefault(_Information);
 
-var _Styles = __webpack_require__(49);
+var _Styles = __webpack_require__(48);
 
 var _Styles2 = _interopRequireDefault(_Styles);
 
@@ -3535,7 +3535,7 @@ var Thumbnail = function (_React$Component) {
         return _this;
     }
 
-    //get product from api:
+    //!get product from api:
 
 
     _createClass(Thumbnail, [{
@@ -4537,112 +4537,7 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Navbar = function (_React$Component) {
-    _inherits(Navbar, _React$Component);
-
-    function Navbar(props) {
-        _classCallCheck(this, Navbar);
-
-        return _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).call(this, props));
-    }
-
-    _createClass(Navbar, [{
-        key: "render",
-        value: function render() {
-
-            return _react2.default.createElement(
-                "div",
-                null,
-                _react2.default.createElement(
-                    "div",
-                    { className: "navbar navbar-default" },
-                    _react2.default.createElement(
-                        "div",
-                        { className: "navbar-header" },
-                        _react2.default.createElement(
-                            "button",
-                            { type: "button", className: "navbar-toggle", "data-toggle": "collapse", "data-target": ".navbar-responsive-collapse" },
-                            _react2.default.createElement("span", { className: "icon-bar" }),
-                            _react2.default.createElement("span", { className: "icon-bar" }),
-                            _react2.default.createElement("span", { className: "icon-bar" })
-                        ),
-                        _react2.default.createElement(
-                            "a",
-                            { className: "navbar-brand", href: "#" },
-                            " ",
-                            _react2.default.createElement("img", { className: "logo", src: "https://hungamadeal.co.in/wp-content/uploads/2020/06/freesnippingtool.com_capture_20200620213653.png", style: { width: 130 } })
-                        )
-                    ),
-                    _react2.default.createElement(
-                        "div",
-                        { className: "navbar-collapse collapse navbar-responsive-collapse" },
-                        _react2.default.createElement(
-                            "form",
-                            { className: "navbar-form-navbar-left" },
-                            _react2.default.createElement("input", { type: "text", className: "form-control-col-lg-8", placeholder: "Search" }),
-                            _react2.default.createElement(
-                                "button",
-                                { type: "submit" },
-                                _react2.default.createElement("i", { className: "fa fa-search" })
-                            )
-                        )
-                    )
-                ),
-                _react2.default.createElement(
-                    "div",
-                    { className: "alert" },
-                    _react2.default.createElement(
-                        "span",
-                        { className: "closebtn" },
-                        "\xD7"
-                    ),
-                    _react2.default.createElement(
-                        "strong",
-                        null,
-                        "Announcement !"
-                    ),
-                    " Sale/Discount ",
-                    _react2.default.createElement(
-                        "strong",
-                        null,
-                        " offer."
-                    )
-                )
-            );
-        }
-    }]);
-
-    return Navbar;
-}(_react2.default.Component);
-
-exports.default = Navbar;
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactStarRatings = __webpack_require__(41);
+var _reactStarRatings = __webpack_require__(40);
 
 var _reactStarRatings2 = _interopRequireDefault(_reactStarRatings);
 
@@ -4789,7 +4684,7 @@ var Information = function (_React$Component) {
 exports.default = Information;
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4799,7 +4694,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _starRatings = __webpack_require__(42);
+var _starRatings = __webpack_require__(41);
 
 var _starRatings2 = _interopRequireDefault(_starRatings);
 
@@ -4813,7 +4708,7 @@ Number.isInteger = Number.isInteger || function (value) {
 exports.default = _starRatings2.default;
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4833,7 +4728,7 @@ var _propTypes = __webpack_require__(15);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _star = __webpack_require__(47);
+var _star = __webpack_require__(46);
 
 var _star2 = _interopRequireDefault(_star);
 
@@ -5081,7 +4976,7 @@ StarRatings.defaultProps = {
 exports.default = StarRatings;
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5103,7 +4998,7 @@ exports.isValidElementType=function(a){return"string"===typeof a||"function"===t
 
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5292,7 +5187,7 @@ exports.typeOf = typeOf;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5891,7 +5786,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5962,7 +5857,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5978,7 +5873,7 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = __webpack_require__(48);
+var _classnames = __webpack_require__(47);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -6157,7 +6052,7 @@ Star.propTypes = {
 exports.default = Star;
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -6216,7 +6111,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6254,11 +6149,15 @@ var Styles = function (_React$Component) {
 
         _this.state = {
             style: [],
-            onestyle: []
+            onestyle: [],
+            name: 'black'
 
         };
         return _this;
     }
+
+    //! get styles :
+
 
     _createClass(Styles, [{
         key: 'componentDidMount',
@@ -6272,6 +6171,13 @@ var Styles = function (_React$Component) {
                 });
             }).catch(function (error) {
                 console.log(error);
+            });
+        }
+    }, {
+        key: 'f',
+        value: function f(name) {
+            this.setState({
+                name: name
             });
         }
     }, {
@@ -6292,16 +6198,24 @@ var Styles = function (_React$Component) {
                         null,
                         'styles'
                     ),
-                    ' - selected style '
+                    ' > ',
+                    this.state.name,
+                    ' '
                 ),
                 this.state.style.map(function (styleid, index) {
                     return _react2.default.createElement(
                         'div',
                         { key: index, id: styleid.style_id, className: 'circle' },
                         ' ',
-                        _react2.default.createElement('span', { onClick: function onClick() {
-                                return _this3.props.styleimages(styleid.photos);
-                            }, style: { background: '' + styleid.name }, className: 'style' })
+                        _react2.default.createElement(
+                            'div',
+                            { onClick: function onClick() {
+                                    return _this3.f(styleid.name);
+                                } },
+                            _react2.default.createElement('span', { onClick: function onClick() {
+                                    return _this3.props.styleimages(styleid.photos);
+                                }, style: { background: '' + styleid.name }, className: 'style' })
+                        )
                     );
                 }),
                 _react2.default.createElement(
@@ -6313,12 +6227,12 @@ var Styles = function (_React$Component) {
                         _react2.default.createElement(
                             'option',
                             { value: 'volvo' },
-                            'Select quantity'
+                            'Select size'
                         ),
                         this.state.style.map(function (styleid, index) {
                             return _react2.default.createElement(
                                 'option',
-                                { value: 'saab' },
+                                { key: index, value: 'saab' },
                                 styleid.style_id
                             );
                         })
@@ -6329,22 +6243,22 @@ var Styles = function (_React$Component) {
                         _react2.default.createElement(
                             'option',
                             { value: '1' },
-                            'Select size'
+                            '1'
                         ),
                         _react2.default.createElement(
                             'option',
                             { value: '2' },
-                            'xs'
+                            '8'
                         ),
                         _react2.default.createElement(
                             'option',
                             { value: '3' },
-                            'xl'
+                            '16'
                         ),
                         _react2.default.createElement(
                             'option',
                             { value: '4' },
-                            'xxl'
+                            '18'
                         )
                     ),
                     _react2.default.createElement('input', { className: 'addtocart', type: 'submit', value: 'Add to cart    +' })
@@ -6357,6 +6271,111 @@ var Styles = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Styles;
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Navbar = function (_React$Component) {
+    _inherits(Navbar, _React$Component);
+
+    function Navbar(props) {
+        _classCallCheck(this, Navbar);
+
+        return _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).call(this, props));
+    }
+
+    _createClass(Navbar, [{
+        key: "render",
+        value: function render() {
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "div",
+                    { className: "navbar navbar-default" },
+                    _react2.default.createElement(
+                        "div",
+                        { className: "navbar-header" },
+                        _react2.default.createElement(
+                            "button",
+                            { type: "button", className: "navbar-toggle", "data-toggle": "collapse", "data-target": ".navbar-responsive-collapse" },
+                            _react2.default.createElement("span", { className: "icon-bar" }),
+                            _react2.default.createElement("span", { className: "icon-bar" }),
+                            _react2.default.createElement("span", { className: "icon-bar" })
+                        ),
+                        _react2.default.createElement(
+                            "a",
+                            { className: "navbar-brand", href: "#" },
+                            " ",
+                            _react2.default.createElement("img", { className: "logo", src: "https://hungamadeal.co.in/wp-content/uploads/2020/06/freesnippingtool.com_capture_20200620213653.png", style: { width: 130 } })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "navbar-collapse collapse navbar-responsive-collapse" },
+                        _react2.default.createElement(
+                            "form",
+                            { className: "navbar-form-navbar-left" },
+                            _react2.default.createElement("input", { type: "text", className: "form-control-col-lg-8", placeholder: "Search" }),
+                            _react2.default.createElement(
+                                "button",
+                                { type: "submit" },
+                                _react2.default.createElement("i", { className: "fa fa-search" })
+                            )
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "alert" },
+                    _react2.default.createElement(
+                        "span",
+                        { className: "closebtn" },
+                        "\xD7"
+                    ),
+                    _react2.default.createElement(
+                        "strong",
+                        null,
+                        "Announcement !"
+                    ),
+                    " Sale/Discount ",
+                    _react2.default.createElement(
+                        "strong",
+                        null,
+                        " offer."
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Navbar;
+}(_react2.default.Component);
+
+exports.default = Navbar;
 
 /***/ })
 /******/ ]);

@@ -6,6 +6,7 @@ const env = require("dotenv").config();
 const port = process.env.PORT || 3001;
 const axios = require("axios");
 
+
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "../public")));
 
@@ -149,7 +150,7 @@ app.get("/api/q", async (req, res) => {
 
     console.log(data.data);
     var q = data.data.results.map((elem) => {
-      return elem.skus;
+      return Object.values(elem.skus)
     });
     res.json(q);
   } catch (err) {

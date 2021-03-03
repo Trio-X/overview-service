@@ -6,12 +6,14 @@ export default class Styles extends React.Component {
         super(props)
         this.state = {
             style: [],
-            onestyle: []
+            onestyle: [],
+            name: 'black'
 
 
         }
     }
 
+    //! get styles :
     componentDidMount() {
         axios.get('/api/styles')
             .then(response => {
@@ -27,7 +29,11 @@ export default class Styles extends React.Component {
     }
 
 
-
+    f(name) {
+        this.setState({
+            name: name
+        })
+    }
 
 
 
@@ -36,24 +42,24 @@ export default class Styles extends React.Component {
         return (
             <div>
 
-                <div className="styles"> <strong>styles</strong> - selected style </div>
+                <div className="styles"> <strong>styles</strong> > {this.state.name} </div>
                 {this.state.style.map((styleid, index) => (
-                    <div key={index} id={styleid.style_id} className="circle"> <span onClick={() => this.props.styleimages(styleid.photos)} style={{ background: `${styleid.name}` }} className="style"></span></div>
+                    <div key={index} id={styleid.style_id} className="circle"> <div onClick={() => this.f(styleid.name)}><span onClick={() => this.props.styleimages(styleid.photos)} style={{ background: `${styleid.name}` }} className="style"></span></div></div>
                 ))}
                 <div>
 
                     <select className="selectsize" name="cars" id="cars">
-                        <option value="volvo">Select quantity</option>
+                        <option value="volvo">Select size</option>
                         {this.state.style.map((styleid, index) => (
-                            <option value="saab">{styleid.style_id}</option>
+                            <option key={index} value="saab">{styleid.style_id}</option>
                         ))}
                     </select>
 
                     <select className="quantity" name="cars" id="cars">
-                        <option value="1">Select size</option>
-                        <option value="2">xs</option>
-                        <option value="3">xl</option>
-                        <option value="4">xxl</option>
+                        <option value="1">1</option>
+                        <option value="2">8</option>
+                        <option value="3">16</option>
+                        <option value="4">18</option>
                     </select>
 
                     <input className="addtocart" type="submit" value="Add to cart    +" />
