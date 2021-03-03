@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,7 +70,7 @@
 "use strict";
 
 
-var bind = __webpack_require__(4);
+var bind = __webpack_require__(7);
 
 /*global toString:true*/
 
@@ -619,9 +619,9 @@ process.umask = function() { return 0; };
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(14);
+  module.exports = __webpack_require__(19);
 } else {
-  module.exports = __webpack_require__(15);
+  module.exports = __webpack_require__(20);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
@@ -728,6 +728,141 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+module.exports = ReactPropTypesSecret;
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(22);
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var printWarning = function() {};
+
+if (process.env.NODE_ENV !== 'production') {
+  var ReactPropTypesSecret = __webpack_require__(4);
+  var loggedTypeFailures = {};
+  var has = Function.call.bind(Object.prototype.hasOwnProperty);
+
+  printWarning = function(text) {
+    var message = 'Warning: ' + text;
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+}
+
+/**
+ * Assert that the values match with the type specs.
+ * Error messages are memorized and will only be shown once.
+ *
+ * @param {object} typeSpecs Map of name to a ReactPropType
+ * @param {object} values Runtime values that need to be type-checked
+ * @param {string} location e.g. "prop", "context", "child context"
+ * @param {string} componentName Name of the component for error messages.
+ * @param {?Function} getStack Returns the component stack.
+ * @private
+ */
+function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
+  if (process.env.NODE_ENV !== 'production') {
+    for (var typeSpecName in typeSpecs) {
+      if (has(typeSpecs, typeSpecName)) {
+        var error;
+        // Prop type validation may throw. In case they do, we don't want to
+        // fail the render phase where it didn't fail before. So we log it.
+        // After these have been cleaned up, we'll let them throw.
+        try {
+          // This is intentionally an invariant that gets caught. It's the same
+          // behavior as without this statement except with a better message.
+          if (typeof typeSpecs[typeSpecName] !== 'function') {
+            var err = Error(
+              (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
+              'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.'
+            );
+            err.name = 'Invariant Violation';
+            throw err;
+          }
+          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
+        } catch (ex) {
+          error = ex;
+        }
+        if (error && !(error instanceof Error)) {
+          printWarning(
+            (componentName || 'React class') + ': type specification of ' +
+            location + ' `' + typeSpecName + '` is invalid; the type checker ' +
+            'function must return `null` or an `Error` but returned a ' + typeof error + '. ' +
+            'You may have forgotten to pass an argument to the type checker ' +
+            'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' +
+            'shape all require an argument).'
+          );
+        }
+        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
+          // Only monitor this failure once because there tends to be a lot of the
+          // same error.
+          loggedTypeFailures[error.message] = true;
+
+          var stack = getStack ? getStack() : '';
+
+          printWarning(
+            'Failed ' + location + ' type: ' + error.message + (stack != null ? stack : '')
+          );
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Resets warning cache when testing.
+ *
+ * @private
+ */
+checkPropTypes.resetWarningCache = function() {
+  if (process.env.NODE_ENV !== 'production') {
+    loggedTypeFailures = {};
+  }
+}
+
+module.exports = checkPropTypes;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 module.exports = function bind(fn, thisArg) {
@@ -742,7 +877,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 5 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -819,7 +954,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 6 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -831,14 +966,14 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 7 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(25);
+var normalizeHeaderName = __webpack_require__(27);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -854,10 +989,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(8);
+    adapter = __webpack_require__(11);
   } else if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(8);
+    adapter = __webpack_require__(11);
   }
   return adapter;
 }
@@ -937,20 +1072,20 @@ module.exports = defaults;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 8 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var settle = __webpack_require__(26);
-var cookies = __webpack_require__(28);
-var buildURL = __webpack_require__(5);
-var buildFullPath = __webpack_require__(29);
-var parseHeaders = __webpack_require__(32);
-var isURLSameOrigin = __webpack_require__(33);
-var createError = __webpack_require__(9);
+var settle = __webpack_require__(28);
+var cookies = __webpack_require__(30);
+var buildURL = __webpack_require__(8);
+var buildFullPath = __webpack_require__(31);
+var parseHeaders = __webpack_require__(34);
+var isURLSameOrigin = __webpack_require__(35);
+var createError = __webpack_require__(12);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -1123,13 +1258,13 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 9 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__(27);
+var enhanceError = __webpack_require__(29);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -1148,7 +1283,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 10 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1242,7 +1377,7 @@ module.exports = function mergeConfig(config1, config2) {
 
 
 /***/ }),
-/* 11 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1268,13 +1403,54 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 12 */
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+if (process.env.NODE_ENV !== 'production') {
+  var ReactIs = __webpack_require__(16);
+
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = __webpack_require__(44)(ReactIs.isElement, throwOnDirectAccess);
+} else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = __webpack_require__(45)();
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports = __webpack_require__(42);
+} else {
+  module.exports = __webpack_require__(43);
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _Index = __webpack_require__(13);
+var _Index = __webpack_require__(18);
 
 var _Index2 = _interopRequireDefault(_Index);
 
@@ -1283,7 +1459,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 window.App = _Index2.default;
 
 /***/ }),
-/* 13 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1299,21 +1475,13 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Thumbnail = __webpack_require__(18);
+var _Thumbnail = __webpack_require__(21);
 
 var _Thumbnail2 = _interopRequireDefault(_Thumbnail);
 
-var _Navbar = __webpack_require__(37);
+var _Navbar = __webpack_require__(49);
 
 var _Navbar2 = _interopRequireDefault(_Navbar);
-
-var _Information = __webpack_require__(38);
-
-var _Information2 = _interopRequireDefault(_Information);
-
-var _Styles = __webpack_require__(52);
-
-var _Styles2 = _interopRequireDefault(_Styles);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1326,26 +1494,19 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var App = function (_React$Component) {
   _inherits(App, _React$Component);
 
-  function App() {
+  function App(props) {
     _classCallCheck(this, App);
 
-    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
     _this.state = {};
     return _this;
   }
 
-  // componentDidMount() {
-  //   axios.get('/api/overview')
-  //     .then(() => {
-
-  //     })
-  // }
-
-
   _createClass(App, [{
     key: 'render',
     value: function render() {
+
       return _react2.default.createElement(
         'div',
         null,
@@ -1356,14 +1517,8 @@ var App = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'inline1' },
+          { className: 'inline3' },
           _react2.default.createElement(_Thumbnail2.default, null)
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'inline2' },
-          _react2.default.createElement(_Information2.default, null),
-          _react2.default.createElement(_Styles2.default, null)
         )
       );
     }
@@ -1375,7 +1530,7 @@ var App = function (_React$Component) {
 exports.default = App;
 
 /***/ }),
-/* 14 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1407,7 +1562,7 @@ exports.useLayoutEffect=function(a,b){return Z().useLayoutEffect(a,b)};exports.u
 
 
 /***/ }),
-/* 15 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1429,7 +1584,7 @@ if (process.env.NODE_ENV !== "production") {
 'use strict';
 
 var _assign = __webpack_require__(3);
-var checkPropTypes = __webpack_require__(16);
+var checkPropTypes = __webpack_require__(6);
 
 var ReactVersion = '16.14.0';
 
@@ -3327,136 +3482,7 @@ exports.version = ReactVersion;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-var printWarning = function() {};
-
-if (process.env.NODE_ENV !== 'production') {
-  var ReactPropTypesSecret = __webpack_require__(17);
-  var loggedTypeFailures = {};
-  var has = Function.call.bind(Object.prototype.hasOwnProperty);
-
-  printWarning = function(text) {
-    var message = 'Warning: ' + text;
-    if (typeof console !== 'undefined') {
-      console.error(message);
-    }
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-}
-
-/**
- * Assert that the values match with the type specs.
- * Error messages are memorized and will only be shown once.
- *
- * @param {object} typeSpecs Map of name to a ReactPropType
- * @param {object} values Runtime values that need to be type-checked
- * @param {string} location e.g. "prop", "context", "child context"
- * @param {string} componentName Name of the component for error messages.
- * @param {?Function} getStack Returns the component stack.
- * @private
- */
-function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
-  if (process.env.NODE_ENV !== 'production') {
-    for (var typeSpecName in typeSpecs) {
-      if (has(typeSpecs, typeSpecName)) {
-        var error;
-        // Prop type validation may throw. In case they do, we don't want to
-        // fail the render phase where it didn't fail before. So we log it.
-        // After these have been cleaned up, we'll let them throw.
-        try {
-          // This is intentionally an invariant that gets caught. It's the same
-          // behavior as without this statement except with a better message.
-          if (typeof typeSpecs[typeSpecName] !== 'function') {
-            var err = Error(
-              (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
-              'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.'
-            );
-            err.name = 'Invariant Violation';
-            throw err;
-          }
-          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
-        } catch (ex) {
-          error = ex;
-        }
-        if (error && !(error instanceof Error)) {
-          printWarning(
-            (componentName || 'React class') + ': type specification of ' +
-            location + ' `' + typeSpecName + '` is invalid; the type checker ' +
-            'function must return `null` or an `Error` but returned a ' + typeof error + '. ' +
-            'You may have forgotten to pass an argument to the type checker ' +
-            'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' +
-            'shape all require an argument).'
-          );
-        }
-        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
-          // Only monitor this failure once because there tends to be a lot of the
-          // same error.
-          loggedTypeFailures[error.message] = true;
-
-          var stack = getStack ? getStack() : '';
-
-          printWarning(
-            'Failed ' + location + ' type: ' + error.message + (stack != null ? stack : '')
-          );
-        }
-      }
-    }
-  }
-}
-
-/**
- * Resets warning cache when testing.
- *
- * @private
- */
-checkPropTypes.resetWarningCache = function() {
-  if (process.env.NODE_ENV !== 'production') {
-    loggedTypeFailures = {};
-  }
-}
-
-module.exports = checkPropTypes;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
-
-module.exports = ReactPropTypesSecret;
-
-
-/***/ }),
-/* 18 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3472,9 +3498,17 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _axios = __webpack_require__(19);
+var _axios = __webpack_require__(5);
 
 var _axios2 = _interopRequireDefault(_axios);
+
+var _Information = __webpack_require__(39);
+
+var _Information2 = _interopRequireDefault(_Information);
+
+var _Styles = __webpack_require__(48);
+
+var _Styles2 = _interopRequireDefault(_Styles);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3494,10 +3528,15 @@ var Thumbnail = function (_React$Component) {
 
         _this.state = {
             images: [],
-            show: false
+            show: false,
+            newimages: []
+
         };
         return _this;
     }
+
+    //!get product from api:
+
 
     _createClass(Thumbnail, [{
         key: 'componentDidMount',
@@ -3514,10 +3553,22 @@ var Thumbnail = function (_React$Component) {
                 console.log(error);
             });
         }
+
+        //!change style:
+
+    }, {
+        key: 'changestyle',
+        value: function changestyle(newphotos) {
+            this.setState({
+                images: newphotos
+            });
+        }
     }, {
         key: 'render',
         value: function render() {
+            var _this3 = this;
 
+            // ! image galery manipulation:
             jQuery(document).ready(function ($) {
 
                 $('#myCarousel').carousel({
@@ -3542,93 +3593,107 @@ var Thumbnail = function (_React$Component) {
                 });
             });
 
-            console.log(this.state.images);
-
             return _react2.default.createElement(
                 'div',
-                { className: 'container' },
-                this.state.show ? _react2.default.createElement(
+                null,
+                _react2.default.createElement(
                     'div',
-                    { id: 'main_area' },
+                    { className: 'inline1' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'row' },
-                        _react2.default.createElement(
+                        { className: 'container' },
+                        this.state.show ? _react2.default.createElement(
                             'div',
-                            { className: 'col-sm-3', id: 'slider-thumbs' },
-                            _react2.default.createElement(
-                                'ul',
-                                { className: 'hide-bullets' },
-                                _react2.default.createElement(
-                                    'li',
-                                    { className: 'col-sm-12' },
-                                    _react2.default.createElement(
-                                        'a',
-                                        { className: 'thumbnail', id: 'carousel-selector-0' },
-                                        _react2.default.createElement('img', { src: this.state.images[0].thumbnail_url })
-                                    )
-                                ),
-                                this.state.images.slice(1).map(function (imge, index) {
-                                    return _react2.default.createElement(
-                                        'li',
-                                        { key: index, className: 'col-sm-12' },
-                                        _react2.default.createElement(
-                                            'a',
-                                            { className: 'thumbnail', id: 'carousel-selector-' + (index + 1) },
-                                            _react2.default.createElement('img', { src: imge.thumbnail_url })
-                                        )
-                                    );
-                                })
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-sm-8' },
+                            { id: 'main_area' },
                             _react2.default.createElement(
                                 'div',
-                                { className: 'col-xs-12', id: 'slider' },
+                                { className: 'row' },
                                 _react2.default.createElement(
                                     'div',
-                                    { className: 'row' },
+                                    { className: 'col-sm-3', id: 'slider-thumbs' },
+                                    _react2.default.createElement(
+                                        'ul',
+                                        { className: 'hide-bullets' },
+                                        _react2.default.createElement(
+                                            'li',
+                                            { className: 'col-sm-12' },
+                                            _react2.default.createElement(
+                                                'a',
+                                                { className: 'thumbnail', id: 'carousel-selector-0' },
+                                                _react2.default.createElement('img', { src: this.state.images[0].thumbnail_url })
+                                            )
+                                        ),
+                                        this.state.images.slice(1).map(function (imge, index) {
+                                            return _react2.default.createElement(
+                                                'li',
+                                                { key: index, className: 'col-sm-12' },
+                                                _react2.default.createElement(
+                                                    'a',
+                                                    { className: 'thumbnail', id: 'carousel-selector-' + (index + 1) },
+                                                    _react2.default.createElement('img', { src: imge.thumbnail_url })
+                                                )
+                                            );
+                                        })
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'col-sm-8' },
                                     _react2.default.createElement(
                                         'div',
-                                        { className: 'col-sm-12', id: 'carousel-bounding-box' },
+                                        { className: 'col-xs-12', id: 'slider' },
                                         _react2.default.createElement(
                                             'div',
-                                            { className: 'carousel slide', id: 'myCarousel' },
+                                            { className: 'row' },
                                             _react2.default.createElement(
                                                 'div',
-                                                { className: 'carousel-inner' },
+                                                { className: 'col-sm-12', id: 'carousel-bounding-box' },
                                                 _react2.default.createElement(
                                                     'div',
-                                                    { className: 'active item', 'data-slide-number': '0' },
-                                                    _react2.default.createElement('img', { src: this.state.images[0].thumbnail_url })
-                                                ),
-                                                this.state.images.slice(1).map(function (imge, index) {
-                                                    return _react2.default.createElement(
+                                                    { className: 'carousel slide', id: 'myCarousel' },
+                                                    _react2.default.createElement(
                                                         'div',
-                                                        { key: index + 1, className: 'item', 'data-slide-number': '' + (index + 1) },
-                                                        _react2.default.createElement('img', { className: 'imgnapil', src: imge.thumbnail_url })
-                                                    );
-                                                })
-                                            ),
-                                            _react2.default.createElement(
-                                                'a',
-                                                { className: 'left carousel-control', href: '#myCarousel', role: 'button', 'data-slide': 'prev' },
-                                                _react2.default.createElement('span', { className: 'glyphicon glyphicon-chevron-left' })
-                                            ),
-                                            _react2.default.createElement(
-                                                'a',
-                                                { className: 'right carousel-control', href: '#myCarousel', role: 'button', 'data-slide': 'next' },
-                                                _react2.default.createElement('span', { className: 'glyphicon glyphicon-chevron-right' })
+                                                        { className: 'carousel-inner' },
+                                                        _react2.default.createElement(
+                                                            'div',
+                                                            { className: 'active item', 'data-slide-number': '0' },
+                                                            _react2.default.createElement('img', { src: this.state.images[0].thumbnail_url })
+                                                        ),
+                                                        this.state.images.slice(1).map(function (imge, index) {
+                                                            return _react2.default.createElement(
+                                                                'div',
+                                                                { key: index + 1, className: 'item', 'data-slide-number': '' + (index + 1) },
+                                                                _react2.default.createElement('img', { className: 'imgnapil', src: imge.thumbnail_url })
+                                                            );
+                                                        })
+                                                    ),
+                                                    _react2.default.createElement(
+                                                        'a',
+                                                        { className: 'left carousel-control', href: '#myCarousel', role: 'button', 'data-slide': 'prev' },
+                                                        _react2.default.createElement('span', { className: 'glyphicon glyphicon-chevron-left' })
+                                                    ),
+                                                    _react2.default.createElement(
+                                                        'a',
+                                                        { className: 'right carousel-control', href: '#myCarousel', role: 'button', 'data-slide': 'next' },
+                                                        _react2.default.createElement('span', { className: 'glyphicon glyphicon-chevron-right' })
+                                                    )
+                                                )
                                             )
                                         )
                                     )
                                 )
                             )
-                        )
+                        ) : null
                     )
-                ) : null
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'inline2' },
+                    _react2.default.createElement(_Information2.default, null),
+                    _react2.default.createElement(_Styles2.default, { styleimages: function styleimages(newphotos) {
+                            return _this3.changestyle(newphotos);
+                        } })
+                )
             );
         }
     }]);
@@ -3639,23 +3704,17 @@ var Thumbnail = function (_React$Component) {
 exports.default = Thumbnail;
 
 /***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(20);
-
-/***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(4);
-var Axios = __webpack_require__(21);
-var mergeConfig = __webpack_require__(10);
-var defaults = __webpack_require__(7);
+var bind = __webpack_require__(7);
+var Axios = __webpack_require__(23);
+var mergeConfig = __webpack_require__(13);
+var defaults = __webpack_require__(10);
 
 /**
  * Create an instance of Axios
@@ -3688,18 +3747,18 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(11);
-axios.CancelToken = __webpack_require__(34);
-axios.isCancel = __webpack_require__(6);
+axios.Cancel = __webpack_require__(14);
+axios.CancelToken = __webpack_require__(36);
+axios.isCancel = __webpack_require__(9);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(35);
+axios.spread = __webpack_require__(37);
 
 // Expose isAxiosError
-axios.isAxiosError = __webpack_require__(36);
+axios.isAxiosError = __webpack_require__(38);
 
 module.exports = axios;
 
@@ -3708,17 +3767,17 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var buildURL = __webpack_require__(5);
-var InterceptorManager = __webpack_require__(22);
-var dispatchRequest = __webpack_require__(23);
-var mergeConfig = __webpack_require__(10);
+var buildURL = __webpack_require__(8);
+var InterceptorManager = __webpack_require__(24);
+var dispatchRequest = __webpack_require__(25);
+var mergeConfig = __webpack_require__(13);
 
 /**
  * Create a new instance of Axios
@@ -3810,7 +3869,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3869,16 +3928,16 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var transformData = __webpack_require__(24);
-var isCancel = __webpack_require__(6);
-var defaults = __webpack_require__(7);
+var transformData = __webpack_require__(26);
+var isCancel = __webpack_require__(9);
+var defaults = __webpack_require__(10);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -3955,7 +4014,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3982,7 +4041,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4001,13 +4060,13 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__(9);
+var createError = __webpack_require__(12);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -4033,7 +4092,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4082,7 +4141,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4142,14 +4201,14 @@ module.exports = (
 
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var isAbsoluteURL = __webpack_require__(30);
-var combineURLs = __webpack_require__(31);
+var isAbsoluteURL = __webpack_require__(32);
+var combineURLs = __webpack_require__(33);
 
 /**
  * Creates a new URL by combining the baseURL with the requestedURL,
@@ -4169,7 +4228,7 @@ module.exports = function buildFullPath(baseURL, requestedURL) {
 
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4190,7 +4249,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4211,7 +4270,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4271,7 +4330,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4346,13 +4405,13 @@ module.exports = (
 
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__(11);
+var Cancel = __webpack_require__(14);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -4410,7 +4469,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4444,7 +4503,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4462,7 +4521,7 @@ module.exports = function isAxiosError(payload) {
 
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4478,116 +4537,11 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Navbar = function (_React$Component) {
-    _inherits(Navbar, _React$Component);
-
-    function Navbar(props) {
-        _classCallCheck(this, Navbar);
-
-        return _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).call(this, props));
-    }
-
-    _createClass(Navbar, [{
-        key: "render",
-        value: function render() {
-
-            return _react2.default.createElement(
-                "div",
-                null,
-                _react2.default.createElement(
-                    "div",
-                    { className: "navbar navbar-default" },
-                    _react2.default.createElement(
-                        "div",
-                        { className: "navbar-header" },
-                        _react2.default.createElement(
-                            "button",
-                            { type: "button", className: "navbar-toggle", "data-toggle": "collapse", "data-target": ".navbar-responsive-collapse" },
-                            _react2.default.createElement("span", { className: "icon-bar" }),
-                            _react2.default.createElement("span", { className: "icon-bar" }),
-                            _react2.default.createElement("span", { className: "icon-bar" })
-                        ),
-                        _react2.default.createElement(
-                            "a",
-                            { className: "navbar-brand", href: "#" },
-                            " ",
-                            _react2.default.createElement("img", { className: "logo", src: "https://hungamadeal.co.in/wp-content/uploads/2020/06/freesnippingtool.com_capture_20200620213653.png", style: { width: 130 } })
-                        )
-                    ),
-                    _react2.default.createElement(
-                        "div",
-                        { className: "navbar-collapse collapse navbar-responsive-collapse" },
-                        _react2.default.createElement(
-                            "form",
-                            { className: "navbar-form-navbar-left" },
-                            _react2.default.createElement("input", { type: "text", className: "form-control-col-lg-8", placeholder: "Search" }),
-                            _react2.default.createElement(
-                                "button",
-                                { type: "submit" },
-                                _react2.default.createElement("i", { className: "fa fa-search" })
-                            )
-                        )
-                    )
-                ),
-                _react2.default.createElement(
-                    "div",
-                    { className: "alert" },
-                    _react2.default.createElement(
-                        "span",
-                        { className: "closebtn" },
-                        "\xD7"
-                    ),
-                    _react2.default.createElement(
-                        "strong",
-                        null,
-                        "Announcement !"
-                    ),
-                    " Sale/Discount ",
-                    _react2.default.createElement(
-                        "strong",
-                        null,
-                        " offer."
-                    )
-                )
-            );
-        }
-    }]);
-
-    return Navbar;
-}(_react2.default.Component);
-
-exports.default = Navbar;
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactStarRatings = __webpack_require__(48);
+var _reactStarRatings = __webpack_require__(40);
 
 var _reactStarRatings2 = _interopRequireDefault(_reactStarRatings);
 
-var _axios = __webpack_require__(19);
+var _axios = __webpack_require__(5);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -4730,46 +4684,296 @@ var Information = function (_React$Component) {
 exports.default = Information;
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
 
-if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(42);
-} else {
-  module.exports = __webpack_require__(43);
-}
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _starRatings = __webpack_require__(41);
+
+var _starRatings2 = _interopRequireDefault(_starRatings);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// polyfill for ie
+Number.isInteger = Number.isInteger || function (value) {
+  return typeof value === 'number' && isFinite(value) && Math.floor(value) === value;
+};
+
+exports.default = _starRatings2.default;
 
 /***/ }),
-/* 40 */,
 /* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
+"use strict";
 
-if (process.env.NODE_ENV !== 'production') {
-  var ReactIs = __webpack_require__(39);
 
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
-  var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(44)(ReactIs.isElement, throwOnDirectAccess);
-} else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(45)();
-}
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(15);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _star = __webpack_require__(46);
+
+var _star2 = _interopRequireDefault(_star);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var StarRatings = function (_React$Component) {
+  _inherits(StarRatings, _React$Component);
+
+  function StarRatings() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, StarRatings);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = StarRatings.__proto__ || Object.getPrototypeOf(StarRatings)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      highestStarHovered: -Infinity
+    }, _this.fillId = 'starGrad' + Math.random().toFixed(15).slice(2), _this.hoverOverStar = function (starRating) {
+      return function () {
+        _this.setState({
+          highestStarHovered: starRating
+        });
+      };
+    }, _this.unHoverOverStar = function () {
+      _this.setState({
+        highestStarHovered: -Infinity
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(StarRatings, [{
+    key: 'stopColorStyle',
+    value: function stopColorStyle(color) {
+      var stopColorStyle = {
+        stopColor: color,
+        stopOpacity: '1'
+      };
+      return this.props.ignoreInlineStyles ? {} : stopColorStyle;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          starRatedColor = _props.starRatedColor,
+          starEmptyColor = _props.starEmptyColor;
+
+
+      return _react2.default.createElement(
+        'div',
+        {
+          className: 'star-ratings',
+          title: this.titleText,
+          style: this.starRatingsStyle
+        },
+        _react2.default.createElement(
+          'svg',
+          {
+            className: 'star-grad',
+            style: this.starGradientStyle
+          },
+          _react2.default.createElement(
+            'defs',
+            null,
+            _react2.default.createElement(
+              'linearGradient',
+              { id: this.fillId, x1: '0%', y1: '0%', x2: '100%', y2: '0%' },
+              _react2.default.createElement('stop', { offset: '0%', className: 'stop-color-first', style: this.stopColorStyle(starRatedColor) }),
+              _react2.default.createElement('stop', { offset: this.offsetValue, className: 'stop-color-first', style: this.stopColorStyle(starRatedColor) }),
+              _react2.default.createElement('stop', { offset: this.offsetValue, className: 'stop-color-final', style: this.stopColorStyle(starEmptyColor) }),
+              _react2.default.createElement('stop', { offset: '100%', className: 'stop-color-final', style: this.stopColorStyle(starEmptyColor) })
+            )
+          )
+        ),
+        this.renderStars
+      );
+    }
+  }, {
+    key: 'starRatingsStyle',
+    get: function get() {
+      var starRatingsStyle = {
+        position: 'relative',
+        boxSizing: 'border-box',
+        display: 'inline-block'
+      };
+      return this.props.ignoreInlineStyles ? {} : starRatingsStyle;
+    }
+  }, {
+    key: 'starGradientStyle',
+    get: function get() {
+      var starGradientStyle = {
+        position: 'absolute',
+        zIndex: '0',
+        width: '0',
+        height: '0',
+        visibility: 'hidden'
+      };
+      return this.props.ignoreInlineStyles ? {} : starGradientStyle;
+    }
+  }, {
+    key: 'titleText',
+    get: function get() {
+      var _props2 = this.props,
+          typeOfWidget = _props2.typeOfWidget,
+          selectedRating = _props2.rating;
+
+      var hoveredRating = this.state.highestStarHovered;
+      var currentRating = hoveredRating > 0 ? hoveredRating : selectedRating;
+      // fix it at 2 decimal places and remove trailing 0s
+      var formattedRating = parseFloat(currentRating.toFixed(2)).toString();
+      if (Number.isInteger(currentRating)) {
+        formattedRating = String(currentRating);
+      }
+      var starText = typeOfWidget + 's';
+      if (formattedRating === '1') {
+        starText = typeOfWidget;
+      }
+      return formattedRating + ' ' + starText;
+    }
+  }, {
+    key: 'offsetValue',
+    get: function get() {
+      var rating = this.props.rating;
+      var ratingIsInteger = Number.isInteger(rating);
+      var offsetValue = '0%';
+      if (!ratingIsInteger) {
+        var firstTwoDecimals = rating.toFixed(2).split('.')[1].slice(0, 2);
+        offsetValue = firstTwoDecimals + '%';
+      }
+      return offsetValue;
+    }
+  }, {
+    key: 'renderStars',
+    get: function get() {
+      var _this2 = this;
+
+      var _props3 = this.props,
+          changeRating = _props3.changeRating,
+          selectedRating = _props3.rating,
+          numberOfStars = _props3.numberOfStars,
+          starDimension = _props3.starDimension,
+          starSpacing = _props3.starSpacing,
+          starRatedColor = _props3.starRatedColor,
+          starEmptyColor = _props3.starEmptyColor,
+          starHoverColor = _props3.starHoverColor,
+          gradientPathName = _props3.gradientPathName,
+          ignoreInlineStyles = _props3.ignoreInlineStyles,
+          svgIconPath = _props3.svgIconPath,
+          svgIconViewBox = _props3.svgIconViewBox,
+          name = _props3.name;
+      var highestStarHovered = this.state.highestStarHovered;
+
+
+      var numberOfStarsArray = Array.apply(null, Array(numberOfStars));
+
+      return numberOfStarsArray.map(function (_, index) {
+        var starRating = index + 1;
+        var isStarred = starRating <= selectedRating;
+
+        // hovered only matters when changeRating is true
+        var hoverMode = highestStarHovered > 0;
+        var isHovered = starRating <= highestStarHovered;
+        var isCurrentHoveredStar = starRating === highestStarHovered;
+
+        // only matters when changeRating is false
+        // given star 5 and rating 4.2:  5 > 4.2 && 4 < 4.2;
+        var isPartiallyFullStar = starRating > selectedRating && starRating - 1 < selectedRating;
+
+        var isFirstStar = starRating === 1;
+        var isLastStar = starRating === numberOfStars;
+
+        return _react2.default.createElement(_star2.default, {
+          key: starRating,
+          fillId: _this2.fillId,
+          changeRating: changeRating ? function () {
+            return changeRating(starRating, name);
+          } : null,
+          hoverOverStar: changeRating ? _this2.hoverOverStar(starRating) : null,
+          unHoverOverStar: changeRating ? _this2.unHoverOverStar : null,
+          isStarred: isStarred,
+          isPartiallyFullStar: isPartiallyFullStar,
+          isHovered: isHovered,
+          hoverMode: hoverMode,
+          isCurrentHoveredStar: isCurrentHoveredStar,
+          isFirstStar: isFirstStar,
+          isLastStar: isLastStar,
+          starDimension: starDimension,
+          starSpacing: starSpacing,
+          starHoverColor: starHoverColor,
+          starRatedColor: starRatedColor,
+          starEmptyColor: starEmptyColor,
+          gradientPathName: gradientPathName,
+          ignoreInlineStyles: ignoreInlineStyles,
+          svgIconPath: svgIconPath,
+          svgIconViewBox: svgIconViewBox
+        });
+      });
+    }
+  }]);
+
+  return StarRatings;
+}(_react2.default.Component);
+
+StarRatings.propTypes = {
+  rating: _propTypes2.default.number.isRequired,
+  numberOfStars: _propTypes2.default.number.isRequired,
+  changeRating: _propTypes2.default.func,
+  starHoverColor: _propTypes2.default.string.isRequired,
+  starRatedColor: _propTypes2.default.string.isRequired,
+  starEmptyColor: _propTypes2.default.string.isRequired,
+  starDimension: _propTypes2.default.string.isRequired,
+  starSpacing: _propTypes2.default.string.isRequired,
+  gradientPathName: _propTypes2.default.string.isRequired,
+  ignoreInlineStyles: _propTypes2.default.bool.isRequired,
+  svgIconPath: _propTypes2.default.string.isRequired,
+  svgIconViewBox: _propTypes2.default.string.isRequired,
+  name: _propTypes2.default.string
+};
+
+StarRatings.defaultProps = {
+  rating: 0,
+  typeOfWidget: 'Star',
+  numberOfStars: 5,
+  changeRating: null,
+  starHoverColor: 'rgb(230, 67, 47)',
+  starRatedColor: 'rgb(109, 122, 130)',
+  starEmptyColor: 'rgb(203, 211, 227)',
+  starDimension: '50px',
+  starSpacing: '7px',
+  gradientPathName: '',
+  ignoreInlineStyles: false,
+  svgIconPath: 'm25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z',
+  svgIconViewBox: '0 0 51 48'
+};
+
+exports.default = StarRatings;
 
 /***/ }),
 /* 42 */
@@ -4996,11 +5200,11 @@ exports.typeOf = typeOf;
 
 
 
-var ReactIs = __webpack_require__(39);
+var ReactIs = __webpack_require__(16);
 var assign = __webpack_require__(3);
 
-var ReactPropTypesSecret = __webpack_require__(17);
-var checkPropTypes = __webpack_require__(16);
+var ReactPropTypesSecret = __webpack_require__(4);
+var checkPropTypes = __webpack_require__(6);
 
 var has = Function.call.bind(Object.prototype.hasOwnProperty);
 var printWarning = function() {};
@@ -5595,7 +5799,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
 
 
-var ReactPropTypesSecret = __webpack_require__(17);
+var ReactPropTypesSecret = __webpack_require__(4);
 
 function emptyFunction() {}
 function emptyFunctionWithReset() {}
@@ -5653,33 +5857,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 46 */,
-/* 47 */,
-/* 48 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _starRatings = __webpack_require__(49);
-
-var _starRatings2 = _interopRequireDefault(_starRatings);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// polyfill for ie
-Number.isInteger = Number.isInteger || function (value) {
-  return typeof value === 'number' && isFinite(value) && Math.floor(value) === value;
-};
-
-exports.default = _starRatings2.default;
-
-/***/ }),
-/* 49 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5695,279 +5873,11 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = __webpack_require__(41);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _star = __webpack_require__(50);
-
-var _star2 = _interopRequireDefault(_star);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var StarRatings = function (_React$Component) {
-  _inherits(StarRatings, _React$Component);
-
-  function StarRatings() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, StarRatings);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = StarRatings.__proto__ || Object.getPrototypeOf(StarRatings)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      highestStarHovered: -Infinity
-    }, _this.fillId = 'starGrad' + Math.random().toFixed(15).slice(2), _this.hoverOverStar = function (starRating) {
-      return function () {
-        _this.setState({
-          highestStarHovered: starRating
-        });
-      };
-    }, _this.unHoverOverStar = function () {
-      _this.setState({
-        highestStarHovered: -Infinity
-      });
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(StarRatings, [{
-    key: 'stopColorStyle',
-    value: function stopColorStyle(color) {
-      var stopColorStyle = {
-        stopColor: color,
-        stopOpacity: '1'
-      };
-      return this.props.ignoreInlineStyles ? {} : stopColorStyle;
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          starRatedColor = _props.starRatedColor,
-          starEmptyColor = _props.starEmptyColor;
-
-
-      return _react2.default.createElement(
-        'div',
-        {
-          className: 'star-ratings',
-          title: this.titleText,
-          style: this.starRatingsStyle
-        },
-        _react2.default.createElement(
-          'svg',
-          {
-            className: 'star-grad',
-            style: this.starGradientStyle
-          },
-          _react2.default.createElement(
-            'defs',
-            null,
-            _react2.default.createElement(
-              'linearGradient',
-              { id: this.fillId, x1: '0%', y1: '0%', x2: '100%', y2: '0%' },
-              _react2.default.createElement('stop', { offset: '0%', className: 'stop-color-first', style: this.stopColorStyle(starRatedColor) }),
-              _react2.default.createElement('stop', { offset: this.offsetValue, className: 'stop-color-first', style: this.stopColorStyle(starRatedColor) }),
-              _react2.default.createElement('stop', { offset: this.offsetValue, className: 'stop-color-final', style: this.stopColorStyle(starEmptyColor) }),
-              _react2.default.createElement('stop', { offset: '100%', className: 'stop-color-final', style: this.stopColorStyle(starEmptyColor) })
-            )
-          )
-        ),
-        this.renderStars
-      );
-    }
-  }, {
-    key: 'starRatingsStyle',
-    get: function get() {
-      var starRatingsStyle = {
-        position: 'relative',
-        boxSizing: 'border-box',
-        display: 'inline-block'
-      };
-      return this.props.ignoreInlineStyles ? {} : starRatingsStyle;
-    }
-  }, {
-    key: 'starGradientStyle',
-    get: function get() {
-      var starGradientStyle = {
-        position: 'absolute',
-        zIndex: '0',
-        width: '0',
-        height: '0',
-        visibility: 'hidden'
-      };
-      return this.props.ignoreInlineStyles ? {} : starGradientStyle;
-    }
-  }, {
-    key: 'titleText',
-    get: function get() {
-      var _props2 = this.props,
-          typeOfWidget = _props2.typeOfWidget,
-          selectedRating = _props2.rating;
-
-      var hoveredRating = this.state.highestStarHovered;
-      var currentRating = hoveredRating > 0 ? hoveredRating : selectedRating;
-      // fix it at 2 decimal places and remove trailing 0s
-      var formattedRating = parseFloat(currentRating.toFixed(2)).toString();
-      if (Number.isInteger(currentRating)) {
-        formattedRating = String(currentRating);
-      }
-      var starText = typeOfWidget + 's';
-      if (formattedRating === '1') {
-        starText = typeOfWidget;
-      }
-      return formattedRating + ' ' + starText;
-    }
-  }, {
-    key: 'offsetValue',
-    get: function get() {
-      var rating = this.props.rating;
-      var ratingIsInteger = Number.isInteger(rating);
-      var offsetValue = '0%';
-      if (!ratingIsInteger) {
-        var firstTwoDecimals = rating.toFixed(2).split('.')[1].slice(0, 2);
-        offsetValue = firstTwoDecimals + '%';
-      }
-      return offsetValue;
-    }
-  }, {
-    key: 'renderStars',
-    get: function get() {
-      var _this2 = this;
-
-      var _props3 = this.props,
-          changeRating = _props3.changeRating,
-          selectedRating = _props3.rating,
-          numberOfStars = _props3.numberOfStars,
-          starDimension = _props3.starDimension,
-          starSpacing = _props3.starSpacing,
-          starRatedColor = _props3.starRatedColor,
-          starEmptyColor = _props3.starEmptyColor,
-          starHoverColor = _props3.starHoverColor,
-          gradientPathName = _props3.gradientPathName,
-          ignoreInlineStyles = _props3.ignoreInlineStyles,
-          svgIconPath = _props3.svgIconPath,
-          svgIconViewBox = _props3.svgIconViewBox,
-          name = _props3.name;
-      var highestStarHovered = this.state.highestStarHovered;
-
-
-      var numberOfStarsArray = Array.apply(null, Array(numberOfStars));
-
-      return numberOfStarsArray.map(function (_, index) {
-        var starRating = index + 1;
-        var isStarred = starRating <= selectedRating;
-
-        // hovered only matters when changeRating is true
-        var hoverMode = highestStarHovered > 0;
-        var isHovered = starRating <= highestStarHovered;
-        var isCurrentHoveredStar = starRating === highestStarHovered;
-
-        // only matters when changeRating is false
-        // given star 5 and rating 4.2:  5 > 4.2 && 4 < 4.2;
-        var isPartiallyFullStar = starRating > selectedRating && starRating - 1 < selectedRating;
-
-        var isFirstStar = starRating === 1;
-        var isLastStar = starRating === numberOfStars;
-
-        return _react2.default.createElement(_star2.default, {
-          key: starRating,
-          fillId: _this2.fillId,
-          changeRating: changeRating ? function () {
-            return changeRating(starRating, name);
-          } : null,
-          hoverOverStar: changeRating ? _this2.hoverOverStar(starRating) : null,
-          unHoverOverStar: changeRating ? _this2.unHoverOverStar : null,
-          isStarred: isStarred,
-          isPartiallyFullStar: isPartiallyFullStar,
-          isHovered: isHovered,
-          hoverMode: hoverMode,
-          isCurrentHoveredStar: isCurrentHoveredStar,
-          isFirstStar: isFirstStar,
-          isLastStar: isLastStar,
-          starDimension: starDimension,
-          starSpacing: starSpacing,
-          starHoverColor: starHoverColor,
-          starRatedColor: starRatedColor,
-          starEmptyColor: starEmptyColor,
-          gradientPathName: gradientPathName,
-          ignoreInlineStyles: ignoreInlineStyles,
-          svgIconPath: svgIconPath,
-          svgIconViewBox: svgIconViewBox
-        });
-      });
-    }
-  }]);
-
-  return StarRatings;
-}(_react2.default.Component);
-
-StarRatings.propTypes = {
-  rating: _propTypes2.default.number.isRequired,
-  numberOfStars: _propTypes2.default.number.isRequired,
-  changeRating: _propTypes2.default.func,
-  starHoverColor: _propTypes2.default.string.isRequired,
-  starRatedColor: _propTypes2.default.string.isRequired,
-  starEmptyColor: _propTypes2.default.string.isRequired,
-  starDimension: _propTypes2.default.string.isRequired,
-  starSpacing: _propTypes2.default.string.isRequired,
-  gradientPathName: _propTypes2.default.string.isRequired,
-  ignoreInlineStyles: _propTypes2.default.bool.isRequired,
-  svgIconPath: _propTypes2.default.string.isRequired,
-  svgIconViewBox: _propTypes2.default.string.isRequired,
-  name: _propTypes2.default.string
-};
-
-StarRatings.defaultProps = {
-  rating: 0,
-  typeOfWidget: 'Star',
-  numberOfStars: 5,
-  changeRating: null,
-  starHoverColor: 'rgb(230, 67, 47)',
-  starRatedColor: 'rgb(109, 122, 130)',
-  starEmptyColor: 'rgb(203, 211, 227)',
-  starDimension: '50px',
-  starSpacing: '7px',
-  gradientPathName: '',
-  ignoreInlineStyles: false,
-  svgIconPath: 'm25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z',
-  svgIconViewBox: '0 0 51 48'
-};
-
-exports.default = StarRatings;
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _classnames = __webpack_require__(51);
+var _classnames = __webpack_require__(47);
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _propTypes = __webpack_require__(41);
+var _propTypes = __webpack_require__(15);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -6142,7 +6052,7 @@ Star.propTypes = {
 exports.default = Star;
 
 /***/ }),
-/* 51 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -6201,7 +6111,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 
 /***/ }),
-/* 52 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6217,7 +6127,7 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _axios = __webpack_require__(19);
+var _axios = __webpack_require__(5);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -6237,13 +6147,48 @@ var Styles = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Styles.__proto__ || Object.getPrototypeOf(Styles)).call(this, props));
 
-        _this.state = {};
+        _this.state = {
+            style: [],
+            onestyle: [],
+            name: 'black'
+
+        };
         return _this;
     }
 
+    //! get styles :
+
+
     _createClass(Styles, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            _axios2.default.get('/api/styles').then(function (response) {
+                // console.log(response.data)
+                _this2.setState({
+                    style: response.data
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+
+        //change style name : 
+
+    }, {
+        key: 'f',
+        value: function f(name) {
+            this.setState({
+                name: name
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var _this3 = this;
+
+            console.log(this.state.style);
             return _react2.default.createElement(
                 'div',
                 null,
@@ -6256,68 +6201,26 @@ var Styles = function (_React$Component) {
                         null,
                         'styles'
                     ),
-                    ' - selected style '
+                    ' > ',
+                    this.state.name,
+                    ' '
                 ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'circle' },
-                    ' ',
-                    _react2.default.createElement('span', { className: 'style' })
-                ),
+                this.state.style.map(function (styleid, index) {
+                    return _react2.default.createElement(
+                        'div',
+                        { key: index, id: styleid.style_id, className: 'circle' },
+                        ' ',
+                        _react2.default.createElement(
+                            'div',
+                            { onClick: function onClick() {
+                                    return _this3.f(styleid.name);
+                                } },
+                            _react2.default.createElement('span', { onClick: function onClick() {
+                                    return _this3.props.styleimages(styleid.photos);
+                                }, style: { background: '' + styleid.name }, className: 'style' })
+                        )
+                    );
+                }),
                 _react2.default.createElement(
                     'div',
                     null,
@@ -6329,21 +6232,13 @@ var Styles = function (_React$Component) {
                             { value: 'volvo' },
                             'Select size'
                         ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: 'saab' },
-                            'Saab'
-                        ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: 'opel' },
-                            'Opel'
-                        ),
-                        _react2.default.createElement(
-                            'option',
-                            { value: 'audi' },
-                            'Audi'
-                        )
+                        this.state.style.map(function (styleid, index) {
+                            return _react2.default.createElement(
+                                'option',
+                                { key: index, value: 'saab' },
+                                styleid.style_id
+                            );
+                        })
                     ),
                     _react2.default.createElement(
                         'select',
@@ -6351,22 +6246,22 @@ var Styles = function (_React$Component) {
                         _react2.default.createElement(
                             'option',
                             { value: '1' },
-                            'Select size'
+                            '1'
                         ),
                         _react2.default.createElement(
                             'option',
                             { value: '2' },
-                            'Saab'
+                            '8'
                         ),
                         _react2.default.createElement(
                             'option',
                             { value: '3' },
-                            'Opel'
+                            '16'
                         ),
                         _react2.default.createElement(
                             'option',
                             { value: '4' },
-                            'Audi'
+                            '18'
                         )
                     ),
                     _react2.default.createElement('input', { className: 'addtocart', type: 'submit', value: 'Add to cart    +' })
@@ -6379,6 +6274,111 @@ var Styles = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Styles;
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Navbar = function (_React$Component) {
+    _inherits(Navbar, _React$Component);
+
+    function Navbar(props) {
+        _classCallCheck(this, Navbar);
+
+        return _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).call(this, props));
+    }
+
+    _createClass(Navbar, [{
+        key: "render",
+        value: function render() {
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "div",
+                    { className: "navbar navbar-default" },
+                    _react2.default.createElement(
+                        "div",
+                        { className: "navbar-header" },
+                        _react2.default.createElement(
+                            "button",
+                            { type: "button", className: "navbar-toggle", "data-toggle": "collapse", "data-target": ".navbar-responsive-collapse" },
+                            _react2.default.createElement("span", { className: "icon-bar" }),
+                            _react2.default.createElement("span", { className: "icon-bar" }),
+                            _react2.default.createElement("span", { className: "icon-bar" })
+                        ),
+                        _react2.default.createElement(
+                            "a",
+                            { className: "navbar-brand", href: "#" },
+                            " ",
+                            _react2.default.createElement("img", { className: "logo", src: "https://hungamadeal.co.in/wp-content/uploads/2020/06/freesnippingtool.com_capture_20200620213653.png", style: { width: 130 } })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "navbar-collapse collapse navbar-responsive-collapse" },
+                        _react2.default.createElement(
+                            "form",
+                            { className: "navbar-form-navbar-left" },
+                            _react2.default.createElement("input", { type: "text", className: "form-control-col-lg-8", placeholder: "Search" }),
+                            _react2.default.createElement(
+                                "button",
+                                { type: "submit" },
+                                _react2.default.createElement("i", { className: "fa fa-search" })
+                            )
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "alert" },
+                    _react2.default.createElement(
+                        "span",
+                        { className: "closebtn" },
+                        "\xD7"
+                    ),
+                    _react2.default.createElement(
+                        "strong",
+                        null,
+                        "Announcement !"
+                    ),
+                    " Sale/Discount ",
+                    _react2.default.createElement(
+                        "strong",
+                        null,
+                        " offer."
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Navbar;
+}(_react2.default.Component);
+
+exports.default = Navbar;
 
 /***/ })
 /******/ ]);

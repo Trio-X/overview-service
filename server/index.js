@@ -6,6 +6,7 @@ const env = require("dotenv").config();
 const port = process.env.PORT || 3001;
 const axios = require("axios");
 
+
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "../public")));
 
@@ -114,12 +115,12 @@ app.get("/api/rating", async (req, res) => {
   }
 });
 
-app.get("/api/quantity", async (req, res) => {
+app.get("/api/styles", async (req, res) => {
   try {
     // var data = [];
     const token = process.env.TOKEN;
     const data = await axios.get(
-      `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews?product_id=11003`,
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles`,
       {
         headers: {
           Authorization: token,
@@ -128,7 +129,30 @@ app.get("/api/quantity", async (req, res) => {
     );
 
     console.log(data.data);
-    res.json(data.data.results[0].rating);
+    res.send(data.data.results);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/api/q", async (req, res) => {
+  try {
+    // var data = [];
+    const token = process.env.TOKEN;
+    const data = await axios.get(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles`,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+
+    console.log(data.data);
+    var q = data.data.results.map((elem) => {
+      return Object.values(elem.skus)
+    });
+    res.json(q);
   } catch (err) {
     console.log(err);
   }
