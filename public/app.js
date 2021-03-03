@@ -6173,6 +6173,9 @@ var Styles = function (_React$Component) {
                 console.log(error);
             });
         }
+
+        //change style name : 
+
     }, {
         key: 'f',
         value: function f(name) {

@@ -28,7 +28,7 @@ export default class Styles extends React.Component {
             })
     }
 
-
+    //change style name : 
     f(name) {
         this.setState({
             name: name
