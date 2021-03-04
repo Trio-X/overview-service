@@ -30213,7 +30213,7 @@ var Thumbnail = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      _axios2.default.get("http://localhost:3001/overview/api/products").then(function (response) {
+      _axios2.default.get("http://159.89.4.210:3001/overview/api/products").then(function (response) {
         // console.log(response.data)
         _this2.setState({
           images: response.data,
@@ -31280,7 +31280,7 @@ var Information = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      _axios2.default.get("http://localhost:3001/overview/api/category").then(function (response) {
+      _axios2.default.get("http://159.89.4.210:3001/overview/api/category").then(function (response) {
         // console.log(response.data)
         _this2.setState({
           category: response.data
@@ -31289,7 +31289,7 @@ var Information = function (_React$Component) {
         console.log(error);
       });
 
-      _axios2.default.get("http://localhost:3001/overview/api/name").then(function (response) {
+      _axios2.default.get("http://159.89.4.210:3001/overview/api/name").then(function (response) {
         // console.log(response.data)
         _this2.setState({
           name: response.data
@@ -31297,7 +31297,7 @@ var Information = function (_React$Component) {
       }).catch(function (error) {
         console.log(error);
       });
-      _axios2.default.get("http://localhost:3001/overview/api/price").then(function (response) {
+      _axios2.default.get("http://159.89.4.210:3001/overview/api/price").then(function (response) {
         // console.log(response.data)
         _this2.setState({
           price: response.data
@@ -31305,7 +31305,7 @@ var Information = function (_React$Component) {
       }).catch(function (error) {
         console.log(error);
       });
-      _axios2.default.get("http://localhost:3001/overview/api/rating").then(function (response) {
+      _axios2.default.get("http://159.89.4.210:3001/overview/api/rating").then(function (response) {
         // console.log(response.data)
         _this2.setState({
           rating: response.data
@@ -32855,7 +32855,7 @@ var Styles = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      _axios2.default.get("http://localhost:3001/overview/api/styles").then(function (response) {
+      _axios2.default.get("http://159.89.4.210:3001/overview/api/styles").then(function (response) {
         // console.log(response.data)
         _this2.setState({
           style: response.data
@@ -32886,21 +32886,18 @@ var Styles = function (_React$Component) {
         _react2.default.createElement(
           "div",
           { className: "styles" },
-          " ",
           _react2.default.createElement(
             "strong",
             null,
             "styles"
           ),
           " > ",
-          this.state.name,
-          " "
+          this.state.name
         ),
         this.state.style.map(function (styleid, index) {
           return _react2.default.createElement(
             "div",
             { key: index, id: styleid.style_id, className: "circle" },
-            " ",
             _react2.default.createElement(
               "div",
               { onClick: function onClick() {

@@ -14,7 +14,7 @@ export default class Styles extends React.Component {
   //! get styles :
   componentDidMount() {
     axios
-      .get("http://localhost:3001/overview/api/styles")
+      .get("http://159.89.4.210:3001/overview/api/styles")
       .then((response) => {
         // console.log(response.data)
         this.setState({
@@ -38,12 +38,10 @@ export default class Styles extends React.Component {
     return (
       <div>
         <div className="styles">
-          {" "}
-          <strong>styles</strong> > {this.state.name}{" "}
+          <strong>styles</strong> > {this.state.name}
         </div>
         {this.state.style.map((styleid, index) => (
           <div key={index} id={styleid.style_id} className="circle">
-            {" "}
             <div onClick={() => this.f(styleid.name)}>
               <span
                 onClick={() => this.props.styleimages(styleid.photos)}
