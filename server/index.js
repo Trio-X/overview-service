@@ -5,13 +5,14 @@ const app = express();
 const env = require("dotenv").config();
 const port = process.env.PORT || 3001;
 const axios = require("axios");
-
+const cors = require("cors");
+app.use(cors());
 
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "../public")));
 
 //getting overview products
-app.get("/api/products", async (req, res) => {
+app.get("/overview/api/products", async (req, res) => {
   try {
     // var data = [];
     const token = process.env.TOKEN;
@@ -32,7 +33,7 @@ app.get("/api/products", async (req, res) => {
 });
 
 //get product catsegory
-app.get("/api/category", async (req, res) => {
+app.get("/overview/api/category", async (req, res) => {
   try {
     const data = await axios.get(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003`,
@@ -52,7 +53,7 @@ app.get("/api/category", async (req, res) => {
 
 //get product name
 
-app.get("/api/name", async (req, res) => {
+app.get("/overview/api/name", async (req, res) => {
   try {
     // var data = [];
     const token = process.env.TOKEN;
@@ -74,7 +75,7 @@ app.get("/api/name", async (req, res) => {
 
 //get product price:
 
-app.get("/api/price", async (req, res) => {
+app.get("/overview/api/price", async (req, res) => {
   try {
     // var data = [];
     const token = process.env.TOKEN;
@@ -95,7 +96,7 @@ app.get("/api/price", async (req, res) => {
 });
 
 //get product rating:
-app.get("/api/rating", async (req, res) => {
+app.get("/overview/api/rating", async (req, res) => {
   try {
     // var data = [];
     const token = process.env.TOKEN;
@@ -115,7 +116,7 @@ app.get("/api/rating", async (req, res) => {
   }
 });
 
-app.get("/api/styles", async (req, res) => {
+app.get("/overview/api/styles", async (req, res) => {
   try {
     // var data = [];
     const token = process.env.TOKEN;
@@ -135,7 +136,7 @@ app.get("/api/styles", async (req, res) => {
   }
 });
 
-app.get("/api/q", async (req, res) => {
+app.get("/overview/api/q", async (req, res) => {
   try {
     // var data = [];
     const token = process.env.TOKEN;
@@ -150,7 +151,7 @@ app.get("/api/q", async (req, res) => {
 
     console.log(data.data);
     var q = data.data.results.map((elem) => {
-      return Object.values(elem.skus)
+      return Object.values(elem.skus);
     });
     res.json(q);
   } catch (err) {

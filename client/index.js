@@ -1,3 +1,5 @@
+import React from "react";
+import ReactDOM from "react-dom";
 import App from "./components/Index.jsx";
-
-window.App = App;
+ReactDOM.render(<App />, document.getElementById("service1"));
+// window.App = App;
