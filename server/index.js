@@ -10,12 +10,12 @@ app.use(cors());
 
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "../public")));
-
+const token = "6b62be346efafb380dd1297e6a12cbf825d65953";
 //getting overview products
 app.get("/overview/api/products", async (req, res) => {
   try {
     // var data = [];
-    const token = process.env.TOKEN;
+    // const token = "6b62be346efafb380dd1297e6a12cbf825d65953";
     const data = await axios.get(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles`,
       {
@@ -39,7 +39,7 @@ app.get("/overview/api/category", async (req, res) => {
       `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003`,
       {
         headers: {
-          Authorization: process.env.TOKEN,
+          Authorization: token,
         },
       }
     );
@@ -56,7 +56,7 @@ app.get("/overview/api/category", async (req, res) => {
 app.get("/overview/api/name", async (req, res) => {
   try {
     // var data = [];
-    const token = process.env.TOKEN;
+    // const token = token;
     const data = await axios.get(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003`,
       {
@@ -78,7 +78,7 @@ app.get("/overview/api/name", async (req, res) => {
 app.get("/overview/api/price", async (req, res) => {
   try {
     // var data = [];
-    const token = process.env.TOKEN;
+    // const token = token;
     const data = await axios.get(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles`,
       {
@@ -99,7 +99,7 @@ app.get("/overview/api/price", async (req, res) => {
 app.get("/overview/api/rating", async (req, res) => {
   try {
     // var data = [];
-    const token = process.env.TOKEN;
+    // const token = token;
     const data = await axios.get(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews?product_id=11003`,
       {
@@ -119,7 +119,7 @@ app.get("/overview/api/rating", async (req, res) => {
 app.get("/overview/api/styles", async (req, res) => {
   try {
     // var data = [];
-    const token = process.env.TOKEN;
+    // const token = token;
     const data = await axios.get(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles`,
       {
@@ -139,7 +139,7 @@ app.get("/overview/api/styles", async (req, res) => {
 app.get("/overview/api/q", async (req, res) => {
   try {
     // var data = [];
-    const token = process.env.TOKEN;
+    // const token = token;
     const data = await axios.get(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/products/11003/styles`,
       {
