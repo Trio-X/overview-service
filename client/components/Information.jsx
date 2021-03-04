@@ -24,7 +24,7 @@ export default class Information extends React.Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:3001/overview/api/category")
+      .get("http://159.89.4.210:3001/overview/api/category")
       .then((response) => {
         // console.log(response.data)
         this.setState({
@@ -36,7 +36,7 @@ export default class Information extends React.Component {
       });
 
     axios
-      .get("http://localhost:3001/overview/api/name")
+      .get("http://159.89.4.210:3001/overview/api/name")
       .then((response) => {
         // console.log(response.data)
         this.setState({
@@ -47,7 +47,7 @@ export default class Information extends React.Component {
         console.log(error);
       });
     axios
-      .get("http://localhost:3001/overview/api/price")
+      .get("http://159.89.4.210:3001/overview/api/price")
       .then((response) => {
         // console.log(response.data)
         this.setState({
@@ -58,7 +58,7 @@ export default class Information extends React.Component {
         console.log(error);
       });
     axios
-      .get("http://localhost:3001/overview/api/rating")
+      .get("http://159.89.4.210:3001/overview/api/rating")
       .then((response) => {
         // console.log(response.data)
         this.setState({

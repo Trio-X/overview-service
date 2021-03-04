@@ -16,7 +16,7 @@ export default class Thumbnail extends React.Component {
   //!get product from api:
   componentDidMount() {
     axios
-      .get("http://localhost:3001/overview/api/products")
+      .get("http://159.89.4.210:3001/overview/api/products")
       .then((response) => {
         // console.log(response.data)
         this.setState({
