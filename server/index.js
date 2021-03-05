@@ -7,9 +7,11 @@ const port = process.env.PORT || 3001;
 const axios = require("axios");
 const cors = require("cors");
 app.use(cors());
+var compression = require("compression");
 
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "../public")));
+app.use(compression());
 const token = "6b62be346efafb380dd1297e6a12cbf825d65953";
 //getting overview products
 app.get("/overview/api/products", async (req, res) => {

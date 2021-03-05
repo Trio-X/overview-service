@@ -1479,7 +1479,7 @@ var _Index2 = _interopRequireDefault(_Index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom2.default.render(_react2.default.createElement(_Index2.default, null), document.getElementById("App"));
+_reactDom2.default.render(_react2.default.createElement(_Index2.default, null), document.getElementById("server1"));
 // window.App = App;
 
 /***/ }),
