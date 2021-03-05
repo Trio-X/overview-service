@@ -3,12 +3,6 @@ import Thumbnail from "./Thumbnail.jsx";
 import Navbar from "./Navbar.jsx";
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   render() {
     return (
       <div>

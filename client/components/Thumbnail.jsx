@@ -12,13 +12,11 @@ export default class Thumbnail extends React.Component {
       newimages: [],
     };
   }
-
   //!get product from api:
   componentDidMount() {
     axios
       .get("http://159.89.4.210:3001/overview/api/products")
       .then((response) => {
-        // console.log(response.data)
         this.setState({
           images: response.data,
           show: true,
@@ -28,21 +26,18 @@ export default class Thumbnail extends React.Component {
         console.log(error);
       });
   }
-
   //!change style:
   changestyle(newphotos) {
     this.setState({
       images: newphotos,
     });
   }
-
   render() {
     // ! image galery manipulation:
     jQuery(document).ready(function ($) {
       $("#myCarousel").carousel({
         interval: 50000,
       });
-
       //Handles the carousel thumbnails
       $("[id^=carousel-selector-]").click(function () {
         var id_selector = $(this).attr("id");
@@ -60,7 +55,6 @@ export default class Thumbnail extends React.Component {
         $("#carousel-text").html($("#slide-content-" + id).html());
       });
     });
-
     return (
       <div>
         <div className="inline1">
@@ -72,9 +66,11 @@ export default class Thumbnail extends React.Component {
                     <ul className="hide-bullets">
                       <li className="col-sm-12">
                         <a className="thumbnail" id="carousel-selector-0">
+                          {/* fix the thumbnail default image */}
                           <img src={this.state.images[0].thumbnail_url} />
                         </a>
                       </li>
+                      {/* show all the thumbnail  images without default  */}
                       {this.state.images.slice(1).map((imge, index) => (
                         <li key={index} className="col-sm-12">
                           <a
@@ -96,10 +92,10 @@ export default class Thumbnail extends React.Component {
                               <div
                                 className="active item"
                                 data-slide-number="0"
-                              >
+                              >{/* fix the inner caroussel default image */}
                                 <img src={this.state.images[0].thumbnail_url} />
                               </div>
-
+                              {/* show all the inner  images without default  */}
                               {this.state.images.slice(1).map((imge, index) => (
                                 <div
                                   key={index + 1}
@@ -113,7 +109,6 @@ export default class Thumbnail extends React.Component {
                                 </div>
                               ))}
                             </div>
-
                             <a
                               className="left carousel-control"
                               href="#myCarousel"
